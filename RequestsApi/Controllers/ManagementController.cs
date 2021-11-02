@@ -38,11 +38,11 @@ namespace RequestsApi.Controllers
             var output = (await _repository.GetProductsAsync()).Select(product => product.AsProductDto());
             return output;
         }
-
-        [HttpGet("{productName}")]
-        public async Task<ActionResult<ProductDto>> GetProductAsync(string productName)
+        
+        [HttpGet("GetAvailableProduct/{productName}")]
+        public async Task<ActionResult<ProductDto>> GetProduct(string productName)
         {
-            var output = (await _repository.GetProductAsync(productName)).AsProductDto();
+            var output = (await _repository.GatherProductAsync(productName)).AsProductDto();
             return output;
         }
         
@@ -50,11 +50,7 @@ namespace RequestsApi.Controllers
         public async Task<ActionResult<ProductDto>> CreateProduct(Product product)
         {
             await _repository.CreateItem(product);
-            var actionName = nameof(GetProductAsync);
-            var routeValues = new {productName = product.Name};
-            
-            //T ODO: CreatedAtAction is throwing an error, it creates the product tho.
-            return CreatedAtAction(actionName, routeValues, product.AsProductDto());
+            return CreatedAtAction(nameof(GetProduct), new {productName = product.Name}, product.AsProductDto());
         }
     }
 }

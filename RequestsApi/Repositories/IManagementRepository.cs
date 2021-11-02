@@ -17,6 +17,6 @@ namespace RequestsApi.Repositories
         Task<IEnumerable<Product>> GetProductsAsync();
 
         Task CreateItem(Product product);
-        Task<Product> GetProductAsync(string productName);
+        Task<Product> GatherProductAsync(string productName);
     }
 }

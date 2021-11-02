@@ -44,7 +44,7 @@ namespace RequestsApi.Repositories
             return output;
         }
 
-        public async Task<Product> GetProductAsync(string productName)
+        public async Task<Product> GatherProductAsync(string productName)
         {
             MySqlConnection con = new(ManagementRepository.con);
             string sql = $"SELECT Name, Quantity FROM productsAvailable WHERE Name = '{productName}'";
