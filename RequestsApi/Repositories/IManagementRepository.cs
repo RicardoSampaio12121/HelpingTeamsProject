@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using RequestsApi.Dtos;
 using RequestsApi.Entities;
 
 namespace RequestsApi.Repositories
@@ -16,7 +17,7 @@ namespace RequestsApi.Repositories
         /// <returns></returns>
         Task<IEnumerable<Product>> GetProductsAsync();
 
-        Task CreateItem(Product product);
+        Task CreateItem(ProductDto product);
         Task<Product> GatherProductAsync(string productName);
 
         Task CreateTeam(TeamModel team);

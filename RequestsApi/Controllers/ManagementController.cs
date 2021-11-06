@@ -47,10 +47,10 @@ namespace RequestsApi.Controllers
         }
         
         [HttpPost("CreateProduct")]
-        public async Task<ActionResult<ProductDto>> CreateProduct(Product product)
+        public async Task<ActionResult<ProductDto>> CreateProduct(ProductDto product)
         {
             await _repository.CreateItem(product);
-            return CreatedAtAction(nameof(GetProduct), new {productName = product.Name}, product.AsProductDto());
+            return CreatedAtAction(nameof(GetProduct), new {productName = product.Name}, product);
         }
     }
 }

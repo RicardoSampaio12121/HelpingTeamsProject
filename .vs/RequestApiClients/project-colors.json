@@ -5,7 +5,27 @@
       "ProjectGuid": "912ffe09-7c5d-4d9e-930a-aa5cd10fe092",
       "DisplayName": "RequestsApi",
       "ColorIndex": 0
+    },
+    "48ff1354-b31b-4e9c-bddb-793dffce6a0a": {
+      "ProjectGuid": "48ff1354-b31b-4e9c-bddb-793dffce6a0a",
+      "DisplayName": "Logic",
+      "ColorIndex": 1
+    },
+    "12f952e8-1930-4af2-a22d-dc6bd89a165d": {
+      "ProjectGuid": "12f952e8-1930-4af2-a22d-dc6bd89a165d",
+      "DisplayName": "Data",
+      "ColorIndex": 2
+    },
+    "55e9ff9d-55e2-4db1-9f67-25ac5e36e19b": {
+      "ProjectGuid": "55e9ff9d-55e2-4db1-9f67-25ac5e36e19b",
+      "DisplayName": "TestConsole",
+      "ColorIndex": 3
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Arquivos Diversos",
+      "ColorIndex": -1
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 4
 }
