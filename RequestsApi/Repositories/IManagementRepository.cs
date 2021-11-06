@@ -18,5 +18,7 @@ namespace RequestsApi.Repositories
 
         Task CreateItem(Product product);
         Task<Product> GatherProductAsync(string productName);
+
+        Task CreateTeam(TeamModel team);
     }
 }
