@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\Data",
+    "\\Data\\RepositoryApi",
+    "\\TestConsole"
   ],
   "SelectedNode": "\\RequestApiClients.sln",
   "PreviewInSolutionExplorer": false

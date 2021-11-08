@@ -17,12 +17,13 @@ namespace TestConsole
             Console.WriteLine("(2) Create product");
             Console.WriteLine("(3) Add more stock to a product");
             Console.WriteLine("(4) List all products");
-            Console.WriteLine("(5) List all pending requests");
-            Console.WriteLine("(6) List pending requests by team");
-            Console.WriteLine("(7) List all accepted requests");
-            Console.WriteLine("(8) List accepted requests by team");
-            Console.WriteLine("(9) List all rejected requests");
-            Console.WriteLine("(10) List rejected by team requests");
+            Console.WriteLine("(5) List a single product");
+            Console.WriteLine("(6) List all pending requests");
+            Console.WriteLine("(7) List pending requests by team");
+            Console.WriteLine("(8) List all accepted requests");
+            Console.WriteLine("(9) List accepted requests by team");
+            Console.WriteLine("(10) List all rejected requests");
+            Console.WriteLine("(11) List rejected by team requests");
 
         }
     }

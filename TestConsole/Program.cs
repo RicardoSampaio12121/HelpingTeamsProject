@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Logic;
 using Logic.Entities;
 using Logic.Repositories;
+using System.Text.Json;
 
 namespace TestConsole
 {
@@ -35,8 +36,7 @@ namespace TestConsole
                         Errors.WrongInputFormat(ExpectedInput.Integer);
                     }
 
-                    Console.WriteLine($"Estou aqui, decisão é {menuDecision}");
-                    Console.ReadKey();
+                 
 
                     //TODO: fix this crap
                     if (menuDecision == 1) // create team 
@@ -78,28 +78,48 @@ namespace TestConsole
 
                     
                     }
+                    else if(menuDecision == 2) //Create product
+                    {
+                        
+                    }
                     else if (menuDecision == 4) //Gets all the available products
-                    { 
+                    {
+                       
                         try
                         {
-                            var coisas = ProductsManagement.GetProducts();
-                            foreach (var coisa in coisas.Result)
-                            {
-                                Console.WriteLine($"{coisa.Name}");
-                                Console.WriteLine($"{coisa.Quantity}");
+                            var products = ProductsManagement.GetProducts().Result;
 
+                            foreach(var product in products)
+                            {
+                                Console.WriteLine(product.Name);
+                                Console.WriteLine(product.Quantity.ToString());
                             }
+
                         }
                         catch (Exception exe)
                         {
-                            Console.ReadKey();
+                            Console.WriteLine("Dentro da exceção");
                             Console.WriteLine(exe.Message);
                         }
+                    }
+                    else if(menuDecision == 5)
+                    {
+                        var product = ProductsManagement.GetProduct("leite").Result;
+
+                        Console.WriteLine(product.Name);
+                        Console.WriteLine(product.Quantity.ToString());
+
                     }
                     break;
                 case 2: 
                    
+                    ProductModel p1 = new()
+                    {
+                       Name = "Computador",
+                       Quantity = 432
+                    };
 
+                    ProductsManagement.CreateProduct(p1);
                    
 
                     break;
@@ -109,6 +129,7 @@ namespace TestConsole
                     break;
                 
             }
+            Console.ReadKey();
             
             
         }
