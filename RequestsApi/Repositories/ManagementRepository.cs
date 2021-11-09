@@ -44,8 +44,6 @@ namespace RequestsApi.Repositories
             return output;
         }
 
-        
-        //TODO: change this function to use the product ID instead of the name
         public async Task<Product> GatherProductAsync(string productName)
         {
             MySqlConnection con = new(ManagementRepository.con);

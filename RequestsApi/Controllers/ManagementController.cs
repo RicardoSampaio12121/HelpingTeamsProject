@@ -35,20 +35,17 @@ namespace RequestsApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetAvailableProducts")]
-        public async Task<IEnumerable<ProductDto>> GetProductsAsync()
+        public async Task<string> GetProductsAsync()
         {
             var output = (await _repository.GetProductsAsync()).Select(product => product.AsProductDto());
-            //return JsonConvert.SerializeObject(output);
-            return output;
+            return JsonConvert.SerializeObject(output);
         }
-
         
         [HttpGet("GetAvailableProduct/{productName}")]
-        public async Task<ActionResult<ProductDto>> GetProduct(string productName)
+        public async Task<ActionResult<string>> GetProduct(string productName)
         {
             var output = (await _repository.GatherProductAsync(productName)).AsProductDto();
-            //return JsonConvert.SerializeObject(output);
-            return output;
+            return JsonConvert.SerializeObject(output);
         }
 
         [HttpPost("CreateProduct")]
