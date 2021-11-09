@@ -89,6 +89,20 @@ namespace TestConsole
                         Logic.Repositories.ProductsManagement.CreateProduct(createProductVar);
                         
                     }
+                    else if (menuDecision == 3)
+                    {
+                        ProductModel createProductVar = new()
+                        {
+                            Id = 2,
+                            Name = "abcd",
+                            Quantity = 20
+                        };
+                       
+                        Logic.Repositories.ProductsManagement.AddStock(createProductVar);
+                        
+                   
+
+                    }
                     else if (menuDecision == 4) //Gets all the available products
                     {
                        

@@ -8,6 +8,7 @@ namespace Logic.Entities
 {
     public class ProductModel
     {
+        public int Id { get; set; }
         /// <summary>
         /// Name of the product
         /// </summary>

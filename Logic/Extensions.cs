@@ -8,18 +8,15 @@ namespace Logic
 {
     public static class Extensions
     {
-        public static string jsonAsJson(this string json)
+        public Data.Entities.ProductModel LogicProductAsDataProduct(this Logic.Entities.ProductModel product)
         {
-            string output = string.Empty;
-
-            foreach(char c in json)
+            Data.Entities.ProductModel output = new()
             {
-                if (c != '\\')
-                {
-                    output += c;
-                }
-            }
-            return output;
+                Id = product.Id,
+                Name = product.Name,
+                Quantity = product.Quantity
+
+            };
         }
     }
 }
