@@ -89,7 +89,7 @@ namespace TestConsole
                         Logic.Repositories.ProductsManagement.CreateProduct(createProductVar);
                         
                     }
-                    else if (menuDecision == 3)
+                    else if (menuDecision == 3) //Add stock
                     {
                         ProductModel createProductVar = new()
                         {

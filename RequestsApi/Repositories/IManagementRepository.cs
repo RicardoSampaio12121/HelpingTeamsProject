@@ -17,9 +17,9 @@ namespace RequestsApi.Repositories
         /// <returns></returns>
         Task<IEnumerable<Product>> GetProductsAsync();
 
-        Task CreateProduct(ProductDto product);
-        Task<Product> GatherProductAsync(string productName);
-
+        Task CreateProduct(CreateProductDto product);
+        Task<Product> GatherProductAsync(int productId);
+        Task<Product> GatherProductByNameAsync(string productName);
         Task CreateTeam(TeamModel team);
 
         Task AddStock(int id, int quantity);

@@ -35,32 +35,40 @@ namespace RequestsApi.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("GetAvailableProducts")]
-        public async Task<string> GetProductsAsync()
+        public async Task<IEnumerable<ProductDto>> GetProductsAsync()
         {
             var output = (await _repository.GetProductsAsync()).Select(product => product.AsProductDto());
-            return JsonConvert.SerializeObject(output);
+            //return JsonConvert.SerializeObject(output);
+            return output;
         }
         
-        [HttpGet("GetAvailableProduct/{productName}")]
-        public async Task<ActionResult<string>> GetProduct(string productName)
+        [HttpGet("GetAvailableProduct/{productId}")]
+        public async Task<ActionResult<ProductDto>> GetProduct(int productId)
         {
-            var output = (await _repository.GatherProductAsync(productName)).AsProductDto();
-            return JsonConvert.SerializeObject(output);
+            var output = (await _repository.GatherProductAsync(productId)).AsProductDto();
+            return output;
+        }
+
+        [HttpGet("GetAvailableProductByName/{productName}")]
+        public async Task<ActionResult<ProductDto>> GetProductByName(string productName)
+        {   
+            var output = (await _repository.GatherProductByNameAsync(productName)).AsProductDto();
+            return output;
         }
 
         [HttpPost("CreateProduct")]
-        public async Task<ActionResult<string>> CreateProduct(ProductDto product)
+        public async Task<ActionResult<CreateProductDto>> CreateProduct(CreateProductDto product)
         {
 
             await _repository.CreateProduct(product);
-            return CreatedAtAction(nameof(GetProduct), new { productName = product.Name }, product);
+            return CreatedAtAction(nameof(GetProductByName), new { productName = product.Name }, product);
         }
 
         [HttpPut("AddStock/{id}")]
-        public async Task<ActionResult<ProductDto>> AddStock(Product product)
+        public async Task<ActionResult<ProductDto>> AddStock(int id, int quantityToAdd)
         {
-            await _repository.AddStock(product.Id, product.Quantity);
-            return Ok();
+            await _repository.AddStock(id, quantityToAdd);
+            return NoContent();
 
         }
     }

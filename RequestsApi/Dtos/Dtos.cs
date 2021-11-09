@@ -8,4 +8,8 @@ namespace RequestsApi.Dtos
     /// <param name="Name"></param>
     /// <param name="Quantity"></param>
     public record ProductDto(string Name, [Range(1, 1000)] int Quantity);
+
+    public record CreateProductDto(string Name, [Range(1, 1000)] int Quantity);
+
+
 }

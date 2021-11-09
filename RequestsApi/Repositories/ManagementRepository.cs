@@ -12,8 +12,8 @@ namespace RequestsApi.Repositories
     /// </summary>
     public class ManagementRepository : IManagementRepository
     {
-        //private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=root;Pwd=thethreedeadlyhallows;";
-        private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=claudio;Pwd=cmffs1810;";
+        private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=root;Pwd=thethreedeadlyhallows;";
+        //private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=claudio;Pwd=cmffs1810;";
 
         /// <summary>
         /// Gets all the available products in tha database
@@ -35,6 +35,7 @@ namespace RequestsApi.Repositories
             {
                 output.Add(new Product()
                 {
+                    Id = int.Parse(sqlDr[0].ToString()),
                     Name = sqlDr[1].ToString(),
                     Quantity = int.Parse(sqlDr[2].ToString())
                 });
@@ -45,10 +46,10 @@ namespace RequestsApi.Repositories
             return output;
         }
 
-        public async Task<Product> GatherProductAsync(string productName)
+        public async Task<Product> GatherProductAsync(int productId)
         {
             MySqlConnection con = new(ManagementRepository.con);
-            string sql = $"SELECT name, quantity FROM available_products WHERE Name = '{productName}'";
+            string sql = $"SELECT * FROM available_products WHERE id = '{productId}'";
 
             await using MySqlCommand cmd = new(sql, con);
             await con.OpenAsync();
@@ -57,14 +58,35 @@ namespace RequestsApi.Repositories
             
             var output = new Product()
             {
-                Name = sqlDr.GetString(0),
-                Quantity = sqlDr.GetInt32(1)
+                Id = sqlDr.GetInt32(0),
+                Name = sqlDr.GetString(1),
+                Quantity = sqlDr.GetInt32(2)
             };
 
             return output;
         }
-        
-        public async Task CreateProduct(ProductDto product)
+
+        public async Task<Product> GatherProductByNameAsync(string productName)
+        {
+            MySqlConnection con = new(ManagementRepository.con);
+            string sql = $"SELECT * FROM available_products WHERE name = '{productName}'";
+
+            await using MySqlCommand cmd = new(sql, con);
+            await con.OpenAsync();
+            var sqlDr = await cmd.ExecuteReaderAsync();
+            await sqlDr.ReadAsync();
+
+            var output = new Product()
+            {
+                Id = sqlDr.GetInt32(0),
+                Name = sqlDr.GetString(1),
+                Quantity = sqlDr.GetInt32(2)
+            };
+
+            return output;
+        }
+
+        public async Task CreateProduct(CreateProductDto product)
         {
             MySqlConnection con = new(ManagementRepository.con);
             const string sql =

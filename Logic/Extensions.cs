@@ -8,7 +8,7 @@ namespace Logic
 {
     public static class Extensions
     {
-        public Data.Entities.ProductModel LogicProductAsDataProduct(this Logic.Entities.ProductModel product)
+        public static Data.Entities.ProductModel LogicProductAsDataProduct(this Logic.Entities.ProductModel product)
         {
             Data.Entities.ProductModel output = new()
             {
@@ -17,6 +17,7 @@ namespace Logic
                 Quantity = product.Quantity
 
             };
+            return output;
         }
     }
 }
