@@ -63,7 +63,7 @@ namespace RequestsApi.Repositories
             return output;
         }
         
-        public async Task CreateItem(ProductDto product)
+        public async Task CreateProduct(ProductDto product)
         {
             MySqlConnection con = new(ManagementRepository.con);
             const string sql =

@@ -6,6 +6,7 @@ using RequestsApi.Dtos;
 using RequestsApi.Entities;
 using RequestsApi.Repositories;
 using Newtonsoft.Json;
+using System.Net.Http;
 
 namespace RequestsApi.Controllers
 {
@@ -46,12 +47,13 @@ namespace RequestsApi.Controllers
             var output = (await _repository.GatherProductAsync(productName)).AsProductDto();
             return JsonConvert.SerializeObject(output);
         }
-        
-        //[HttpPost("CreateProduct")]
-        //public async Task<ActionResult<ProductDto>> CreateProduct(StringContent product)
-        //{
-        //    await _repository.CreateItem(product);
-        //    return CreatedAtAction(nameof(GetProduct), new {productName = product.Name}, product);
-        //}
+
+        [HttpPost("CreateProduct")]
+        public async Task<ActionResult<string>> CreateProduct(ProductDto product)
+        {
+
+            await _repository.CreateProduct(product);
+            return CreatedAtAction(nameof(GetProduct), new { productName = product.Name }, product);
+        }
     }
 }

@@ -40,9 +40,8 @@ namespace Data.RepositoryApi
         {
             string url = "https://localhost:44358/management/CreateProduct";
 
-
             var stringContent = new StringContent(productAsJson, Encoding.UTF8, "application/json");
-            _ = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
+            var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
     }
 }

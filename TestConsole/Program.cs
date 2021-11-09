@@ -80,6 +80,13 @@ namespace TestConsole
                     }
                     else if(menuDecision == 2) //Create product
                     {
+                        ProductModel createProductVar = new()
+                        {
+                            Name = "abcd",
+                            Quantity = 13
+                        };
+
+                        Logic.Repositories.ProductsManagement.CreateProduct(createProductVar);
                         
                     }
                     else if (menuDecision == 4) //Gets all the available products
