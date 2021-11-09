@@ -7,6 +7,8 @@ namespace RequestsApi.Entities
     /// </summary>
     public record Product
     {
+
+        public int Id { get; init; }
         /// <summary>
         /// Name of the product
         /// </summary>

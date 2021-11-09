@@ -8,6 +8,7 @@ namespace Data.Entities
 {
     public record ProductModel
     {
+        public int Id { get; init; }
         /// <summary>
         /// Name of the product
         /// </summary>

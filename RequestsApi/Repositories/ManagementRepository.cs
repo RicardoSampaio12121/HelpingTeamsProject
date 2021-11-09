@@ -12,8 +12,9 @@ namespace RequestsApi.Repositories
     /// </summary>
     public class ManagementRepository : IManagementRepository
     {
-        private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=root;Pwd=thethreedeadlyhallows;";
-        
+        //private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=root;Pwd=thethreedeadlyhallows;";
+        private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=claudio;Pwd=cmffs1810;";
+
         /// <summary>
         /// Gets all the available products in tha database
         /// </summary>
@@ -101,6 +102,19 @@ namespace RequestsApi.Repositories
 
             await cmdTeam.ExecuteNonQueryAsync();
             await cmdMembers.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
+
+        public async Task AddStock(int id, int quantity)
+        {
+            MySqlConnection con = new(ManagementRepository.con);
+            string sql =
+               $"UPDATE available_products SET quantity=quantity+'{quantity}' WHERE id='{id}'";
+
+            await using MySqlCommand cmd = new(sql, con);
+            await con.OpenAsync();
+
+            await cmd.ExecuteNonQueryAsync();
             await con.CloseAsync();
         }
 

@@ -55,5 +55,13 @@ namespace RequestsApi.Controllers
             await _repository.CreateProduct(product);
             return CreatedAtAction(nameof(GetProduct), new { productName = product.Name }, product);
         }
+
+        [HttpPut("AddStock/{id}")]
+        public async Task<ActionResult<ProductDto>> AddStock(Product product)
+        {
+            await _repository.AddStock(product.Id, product.Quantity);
+            return Ok();
+
+        }
     }
 }

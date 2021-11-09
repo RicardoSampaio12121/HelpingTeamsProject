@@ -43,5 +43,13 @@ namespace Data.RepositoryApi
             var stringContent = new StringContent(productAsJson, Encoding.UTF8, "application/json");
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
+
+        public static async Task AddStock(ProductModel product)
+        {
+            string url = $"https://localhost:44358/management/AddStock/{product.Id}";
+
+            //var stringContent = new StringContent(productAsJson, Encoding.UTF8, "application/json");
+            var result = await Connector.Connector.ApiClient.PutAsJsonAsync(url, product);
+        }
     }
 }

@@ -29,5 +29,11 @@ namespace Logic.Repositories
             var productAsJson = JsonConvert.SerializeObject(product);
             await Products.CreateProduct(productAsJson);
         }
+
+        public static async Task AddStock(Entities.ProductModel product)
+        {
+            //var productAsJson = JsonConvert.SerializeObject(product);
+            await Products.AddStock(product.LogicProductAsDataProduct());
+        }
     }
 }
