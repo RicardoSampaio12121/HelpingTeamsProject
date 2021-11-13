@@ -11,5 +11,7 @@ namespace RequestsApi.Dtos
 
     public record CreateProductDto(string Name, [Range(1, 1000)] int Quantity);
 
+    public record ReturnTeamDto(int id, string location);
+
 
 }

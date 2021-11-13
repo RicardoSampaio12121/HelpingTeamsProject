@@ -21,7 +21,8 @@ namespace RequestsApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IManagementRepository, ManagementRepository>();
-            
+            services.AddSingleton<ITeamsRepository, TeamsRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

@@ -20,7 +20,7 @@ namespace RequestsApi.Repositories
         Task CreateProduct(CreateProductDto product);
         Task<Product> GatherProductAsync(int productId);
         Task<Product> GatherProductByNameAsync(string productName);
-        Task CreateTeam(TeamModel team);
+        //Task CreateTeam(TeamModel team);
 
         Task AddStock(int id, int quantity);
     }

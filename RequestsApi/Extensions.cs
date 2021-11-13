@@ -17,5 +17,10 @@ namespace RequestsApi
         {
             return new ProductDto(product.Name, product.Quantity);
         }
+
+        public static ReturnTeamDto AsReturnTeamDto(this TeamModel team)
+        {
+            return new ReturnTeamDto(team.Id, team.Location);
+        }
     }
 }

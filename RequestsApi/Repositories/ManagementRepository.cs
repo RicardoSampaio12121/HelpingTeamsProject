@@ -102,30 +102,30 @@ namespace RequestsApi.Repositories
             await con.CloseAsync();
         }
 
-        public async Task CreateTeam(TeamModel team)
-        {
-            MySqlConnection con = new(ManagementRepository.con);
-            string sqlTeam =
-                $"INSERT INTO teams (location) VALUES ({team.Location})";
+        //public async Task CreateTeam(TeamModel team)
+        //{
+        //    MySqlConnection con = new(ManagementRepository.con);
+        //    string sqlTeam =
+        //        $"INSERT INTO teams (location) VALUES ({team.Location})";
 
-            string sqlMembers = $"INSERT INTO team_members (name, surname, team, organization) VALUES";
+        //    string sqlMembers = $"INSERT INTO team_members (name, surname, team, organization) VALUES";
 
-            foreach(var member in team.TeamMembers)
-            {
-                sqlMembers += $" ({member.Name}, {member.Surname}, (SELECT MAX(id) FROM teams), {member.Organization}),";
-            }
+        //    foreach(var member in team.TeamMembers)
+        //    {
+        //        sqlMembers += $" ({member.Name}, {member.Surname}, (SELECT MAX(id) FROM teams), {member.Organization}),";
+        //    }
 
-            sqlMembers = sqlMembers.Remove(sqlMembers.Length - 1);
+        //    sqlMembers = sqlMembers.Remove(sqlMembers.Length - 1);
 
-            await using MySqlCommand cmdMembers = new(sqlMembers, con);
-            await using MySqlCommand cmdTeam = new(sqlTeam, con);
+        //    await using MySqlCommand cmdMembers = new(sqlMembers, con);
+        //    await using MySqlCommand cmdTeam = new(sqlTeam, con);
             
-            await con.OpenAsync();
+        //    await con.OpenAsync();
 
-            await cmdTeam.ExecuteNonQueryAsync();
-            await cmdMembers.ExecuteNonQueryAsync();
-            await con.CloseAsync();
-        }
+        //    await cmdTeam.ExecuteNonQueryAsync();
+        //    await cmdMembers.ExecuteNonQueryAsync();
+        //    await con.CloseAsync();
+        //}
 
         public async Task AddStock(int id, int quantity)
         {

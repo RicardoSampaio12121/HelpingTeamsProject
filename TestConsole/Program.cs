@@ -41,40 +41,40 @@ namespace TestConsole
                     //TODO: fix this crap
                     if (menuDecision == 1) // create team 
                     {
-                        TeamMemberModel m1 = new()
-                        {
-                            Name = "Ricardo",
-                            Surname = "Sampaio",
-                            Organization = "PSP"
-                        };
+                        //TeamMemberModel m1 = new()
+                        //{
+                        //    Name = "Ricardo",
+                        //    Surname = "Sampaio",
+                        //    Organization = "PSP"
+                        //};
 
-                        TeamMemberModel m2 = new()
-                        {
-                            Name = "Claudio",
-                            Surname = "Silva",
-                            Organization = "GNR"
-                        };
+                        //TeamMemberModel m2 = new()
+                        //{
+                        //    Name = "Claudio",
+                        //    Surname = "Silva",
+                        //    Organization = "GNR"
+                        //};
 
-                        TeamMemberModel m3 = new()
-                        {
-                            Name = "Dário",
-                            Surname = "Guerreiro",
-                            Organization = "ANEPC"
-                        };
+                        //TeamMemberModel m3 = new()
+                        //{
+                        //    Name = "Dário",
+                        //    Surname = "Guerreiro",
+                        //    Organization = "ANEPC"
+                        //};
 
-                        List<TeamMemberModel> members = new();
-                        members.Add(m1);
-                        members.Add(m2);
-                        members.Add(m3);
+                        //List<TeamMemberModel> members = new();
+                        //members.Add(m1);
+                        //members.Add(m2);
+                        //members.Add(m3);
 
 
-                        TeamModel team = new()
-                        {
-                            Location = "Braga",
-                            TeamMembers = members
-                        };
+                        //TeamModel team = new()
+                        //{
+                        //    Location = "Braga",
+                        //    TeamMembers = members
+                        //};
 
-                        TeamsManagement.CreateTeam(team);
+                        //TeamsManagement.CreateTeam(team);
 
                     
                     }
@@ -130,6 +130,15 @@ namespace TestConsole
                         Console.WriteLine(product.Name);
                         Console.WriteLine(product.Quantity.ToString());
 
+                    }
+                    else if(menuDecision == 6)
+                    {
+                        var teams = Logic.Repositories.TeamsManagement.GetTeamsAsync().Result;
+
+                        foreach(var t in teams)
+                        {
+                            Console.WriteLine($"Id: {t.Id}\nLocation: {t.Location}");
+                        }
                     }
                     break;
                 case 2: 
