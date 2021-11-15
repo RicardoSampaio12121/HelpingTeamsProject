@@ -29,6 +29,24 @@ namespace Data.RepositoryApi
             }
         }
 
+        public static async Task<string> GetTeamMembersAsync(int teamId)
+        {
+            string url = $"https://localhost:44358/teams/GetTeamMembers/{teamId}";
+
+            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        
+        }
+
         //// This method receives a json with the information needed
         //public static async Task CreateTeam(string teamAsJson)
         //{

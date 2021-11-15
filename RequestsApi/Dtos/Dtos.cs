@@ -13,5 +13,7 @@ namespace RequestsApi.Dtos
 
     public record ReturnTeamDto(int id, string location);
 
+    public record ReturnTeamMemberDto(int id, string name, string surname, int teamId, string organization);
+
 
 }

@@ -19,6 +19,13 @@ namespace Logic.Repositories
             var output = await Teams.GetTeamsAsync();
             return JsonConvert.DeserializeObject<IEnumerable<TeamModel>>(output);
             //return output;
-        }     
+        }
+
+        public static async Task<IEnumerable<TeamMemberModel>> GetTeamMembersAsync(int teamId)
+        {
+            var output = await Teams.GetTeamMembersAsync(teamId);
+            return JsonConvert.DeserializeObject<IEnumerable<TeamMemberModel>>(output);
+
+        }
     }
 }

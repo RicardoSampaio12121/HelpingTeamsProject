@@ -31,9 +31,16 @@ namespace Management
             dgvTeams.DataSource = table;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnShowTeamMembers_Click(object sender, EventArgs e)
         {
-            
+            int index = dgvTeams.SelectedRows[0].Index;
+            var row = dgvTeams.Rows[index];
+
+            int teamId = int.Parse(row.Cells[0].Value.ToString());
+
+            Form teamMembersForm = new TeamMembersForm(teamId);
+
+            teamMembersForm.Show();
 
 
 

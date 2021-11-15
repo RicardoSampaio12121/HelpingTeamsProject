@@ -26,5 +26,13 @@ namespace RequestsApi.Controllers
             var output = (await _repository.GetTeamsAsync()).Select(team => team.AsReturnTeamDto());
             return output;
         }
+
+        [HttpGet("GetTeamMembers/{teamId}")]
+        public async Task<IEnumerable<ReturnTeamMemberDto>> GetTeamMembersAsync(int teamId)
+        {
+            var output = (await _repository.GetTteamMembersAsync(teamId)).Select(member => member.AsReturnMemberDto());
+            return output;
+
+        }
     }
 }

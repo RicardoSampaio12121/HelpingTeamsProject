@@ -22,5 +22,10 @@ namespace RequestsApi
         {
             return new ReturnTeamDto(team.Id, team.Location);
         }
+
+        public static ReturnTeamMemberDto AsReturnMemberDto(this TeamMemberModel member)
+        {
+            return new ReturnTeamMemberDto(member.Id, member.Name, member.Surname, member.Team, member.Organization);
+        }
     }
 }
