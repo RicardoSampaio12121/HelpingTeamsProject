@@ -9,6 +9,16 @@ namespace RequestsApi.Repositories
     {
         private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=root;Pwd=thethreedeadlyhallows;";
 
+        public async Task CreateTeamAsync(string location)
+        {
+            var con = new MySqlConnection(TeamsRepository.con);
+            string sql = $"INSERT INTO teams (location) VALUES ('{location}')";
+
+            await using MySqlCommand cmd = new(sql, con);
+            await con.OpenAsync();
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
 
         public async Task<IEnumerable<TeamModel>> GetTeamsAsync()
         {

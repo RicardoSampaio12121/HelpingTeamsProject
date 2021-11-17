@@ -8,5 +8,6 @@ namespace RequestsApi.Repositories
     {
          Task<IEnumerable<TeamModel>> GetTeamsAsync();
         Task<IEnumerable<TeamMemberModel>> GetTteamMembersAsync(int teamId);
+        Task CreateTeamAsync(string organization);
     }
 }
