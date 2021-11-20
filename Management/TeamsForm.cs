@@ -41,9 +41,12 @@ namespace Management
             Form teamMembersForm = new TeamMembersForm(teamId);
 
             teamMembersForm.Show();
+        }
 
-
-
+        private void btnCreateTeam_Click(object sender, EventArgs e)
+        {
+            Form CreateTeamForm = new CreateTeamForm();
+            CreateTeamForm.Show();
         }
     }
 }

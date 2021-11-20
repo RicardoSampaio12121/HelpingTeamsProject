@@ -1,4 +1,5 @@
-﻿using RequestsApi.Entities;
+﻿using RequestsApi.Dtos;
+using RequestsApi.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -9,5 +10,6 @@ namespace RequestsApi.Repositories
          Task<IEnumerable<TeamModel>> GetTeamsAsync();
         Task<IEnumerable<TeamMemberModel>> GetTteamMembersAsync(int teamId);
         Task CreateTeamAsync(string organization);
+        Task AddTeamMembersAsync(List<AddMemberDto> members);
     }
 }

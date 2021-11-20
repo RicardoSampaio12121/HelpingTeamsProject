@@ -11,7 +11,6 @@ namespace Data.RepositoryApi
 {
     public static class Teams
     {
-
         public static async Task<string> GetTeamsAsync()
         {
             string url = "https://localhost:44358/teams/GetTeams";
@@ -44,30 +43,27 @@ namespace Data.RepositoryApi
                     throw new Exception(response.ReasonPhrase);
                 }
             }
-        
         }
 
-        //// This method receives a json with the information needed
-        //public static async Task CreateTeam(string teamAsJson)
-        //{
-        //    string url = "https://localhost:44358/management/GetAvailableProducts";
+        public static async Task CreateTeam(string teamAsJson)
+        {
+            string url = $"https://localhost:44358/teams/CreateTeam";
+
+            var stringContent = new StringContent(teamAsJson, Encoding.UTF8, "application/json");
+            var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
+        }
+
+        public static async Task AddTeamMembers(string membersAsJson)
+        {
+            string url = $"https://localhost:44358/teams/AddMembers";
+
+            var stringContent = new StringContent(membersAsJson, Encoding.UTF8, "application/json");
+            var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
+        }
 
 
-        //    var content = new StringContent(teamAsJson, Encoding.UTF8, "application/json");
 
-        //    /*using (HttpResponseMessage response = */
-        //    await Connector.Connector.ApiClient.PostAsync(url, content);
-        //    //{
-        //    //if (response.IsSuccessStatusCode)
-        //    //{
-        //    //    // nada
-        //    //}
-        //    //else
-        //    //{
-        //    //    // tambem nada
-        //    //}
-        //    //}
-        //}
+        
 
 
     }

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace RequestsApi.Dtos
@@ -16,6 +17,10 @@ namespace RequestsApi.Dtos
     public record ReturnTeamMemberDto(int id, string name, string surname, int teamId, string organization);
 
     public record CreateTeamDto(string location);
+
+    public record AddMemberDto(string Name, string Surname, string Organization);
+
+    public record AddMembersDto(List<AddMemberDto> members);
 
 
 }

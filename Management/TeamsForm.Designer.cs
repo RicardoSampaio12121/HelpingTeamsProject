@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.dgvTeams = new System.Windows.Forms.DataGridView();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnMembers = new System.Windows.Forms.Button();
+            this.btnCreateTeam = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
@@ -46,24 +46,25 @@
             this.dgvTeams.Size = new System.Drawing.Size(432, 322);
             this.dgvTeams.TabIndex = 0;
             // 
-            // button1
+            // btnMembers
             // 
-            this.button1.Location = new System.Drawing.Point(450, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(175, 54);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnShowTeamMembers_Click);
+            this.btnMembers.Location = new System.Drawing.Point(450, 12);
+            this.btnMembers.Name = "btnMembers";
+            this.btnMembers.Size = new System.Drawing.Size(175, 54);
+            this.btnMembers.TabIndex = 1;
+            this.btnMembers.Text = "Members";
+            this.btnMembers.UseVisualStyleBackColor = true;
+            this.btnMembers.Click += new System.EventHandler(this.btnShowTeamMembers_Click);
             // 
-            // button2
+            // btnCreateTeam
             // 
-            this.button2.Location = new System.Drawing.Point(450, 78);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(175, 54);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnCreateTeam.Location = new System.Drawing.Point(450, 78);
+            this.btnCreateTeam.Name = "btnCreateTeam";
+            this.btnCreateTeam.Size = new System.Drawing.Size(175, 54);
+            this.btnCreateTeam.TabIndex = 2;
+            this.btnCreateTeam.Text = "Create Team";
+            this.btnCreateTeam.UseVisualStyleBackColor = true;
+            this.btnCreateTeam.Click += new System.EventHandler(this.btnCreateTeam_Click);
             // 
             // button3
             // 
@@ -100,8 +101,8 @@
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnCreateTeam);
+            this.Controls.Add(this.btnMembers);
             this.Controls.Add(this.dgvTeams);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "TeamsForm";
@@ -114,8 +115,8 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvTeams;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnMembers;
+        private System.Windows.Forms.Button btnCreateTeam;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;

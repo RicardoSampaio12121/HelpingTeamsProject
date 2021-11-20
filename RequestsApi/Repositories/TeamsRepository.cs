@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using RequestsApi.Dtos;
 using RequestsApi.Entities;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -8,6 +9,28 @@ namespace RequestsApi.Repositories
     public class TeamsRepository : ITeamsRepository
     {
         private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=root;Pwd=thethreedeadlyhallows;";
+
+        public async Task AddTeamMembersAsync(List<AddMemberDto> members)
+        {
+            var con = new MySqlConnection(TeamsRepository.con);
+            string sql = $"INSERT INTO team_members (name, surname, team, organization) VALUES (@name, @surname, (SELECT MAX(id) FROM teams), @organization)";
+
+            await using MySqlCommand cmd = new(sql, con);
+
+            await con.OpenAsync();
+
+            foreach (var member in members)
+            {
+                cmd.Parameters.AddWithValue("@name", member.Name);
+                cmd.Parameters.AddWithValue("@surname", member.Surname);
+                cmd.Parameters.AddWithValue("@organization", member.Organization);
+
+                await cmd.ExecuteNonQueryAsync();
+
+                cmd.Parameters.Clear();
+            }
+            await con.CloseAsync();
+        }
 
         public async Task CreateTeamAsync(string location)
         {
