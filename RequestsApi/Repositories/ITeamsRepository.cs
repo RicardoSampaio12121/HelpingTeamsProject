@@ -11,5 +11,6 @@ namespace RequestsApi.Repositories
         Task<IEnumerable<TeamMemberModel>> GetTteamMembersAsync(int teamId);
         Task CreateTeamAsync(string organization);
         Task AddTeamMembersAsync(List<AddMemberDto> members);
+        Task AddTeamMemberAsync(int teamId, AddMemberDto member);
     }
 }

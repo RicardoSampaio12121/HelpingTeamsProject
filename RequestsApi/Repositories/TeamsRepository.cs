@@ -10,6 +10,22 @@ namespace RequestsApi.Repositories
     {
         private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=root;Pwd=thethreedeadlyhallows;";
 
+        public async Task AddTeamMemberAsync(int teamId, AddMemberDto member)
+        {
+            var con = new MySqlConnection(TeamsRepository.con);
+            string sql = $"INSERT INTO team_members (name, surname, team, organization) VALUES (@name, @surname, @team, @organization)";
+
+            await using MySqlCommand cmd = new(sql, con);
+            cmd.Parameters.Add("@name", MySqlDbType.VarChar).Value = member.Name;
+            cmd.Parameters.Add("@surname", MySqlDbType.VarChar).Value = member.Surname;
+            cmd.Parameters.Add("@team", MySqlDbType.Int32).Value = teamId;
+            cmd.Parameters.Add("@organization", MySqlDbType.VarChar).Value = member.Organization;
+
+            await con.OpenAsync();
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
+
         public async Task AddTeamMembersAsync(List<AddMemberDto> members)
         {
             var con = new MySqlConnection(TeamsRepository.con);

@@ -35,11 +35,9 @@ namespace Management
         {
             int index = dgvTeams.SelectedRows[0].Index;
             var row = dgvTeams.Rows[index];
-
             int teamId = int.Parse(row.Cells[0].Value.ToString());
 
             Form teamMembersForm = new TeamMembersForm(teamId);
-
             teamMembersForm.Show();
         }
 
@@ -47,6 +45,16 @@ namespace Management
         {
             Form CreateTeamForm = new CreateTeamForm();
             CreateTeamForm.Show();
+        }
+
+        private void btnAddMember_Click(object sender, EventArgs e)
+        {
+            int index = dgvTeams.SelectedRows[0].Index;
+            var row = dgvTeams.Rows[index];
+            int teamId = int.Parse(row.Cells[0].Value.ToString());
+
+            Form addTeamMemberForm = new AddTeamMemberForm(teamId);
+            addTeamMemberForm.Show();
         }
     }
 }

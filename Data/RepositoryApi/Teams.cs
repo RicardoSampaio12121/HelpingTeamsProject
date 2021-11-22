@@ -45,6 +45,14 @@ namespace Data.RepositoryApi
             }
         }
 
+        public static async Task AddTeamMemberById(int teamId, string memberAsJson)
+        {
+            string url = $"https://localhost:44358/teams/AddMember/{teamId}";
+
+            var stringContent = new StringContent(memberAsJson, Encoding.UTF8, "application/json");
+            var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
+        }
+
         public static async Task CreateTeam(string teamAsJson)
         {
             string url = $"https://localhost:44358/teams/CreateTeam";

@@ -31,7 +31,7 @@
             this.dgvTeams = new System.Windows.Forms.DataGridView();
             this.btnMembers = new System.Windows.Forms.Button();
             this.btnCreateTeam = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnAddMember = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.button5 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeams)).BeginInit();
@@ -66,14 +66,15 @@
             this.btnCreateTeam.UseVisualStyleBackColor = true;
             this.btnCreateTeam.Click += new System.EventHandler(this.btnCreateTeam_Click);
             // 
-            // button3
+            // btnAddMember
             // 
-            this.button3.Location = new System.Drawing.Point(450, 144);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(175, 54);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnAddMember.Location = new System.Drawing.Point(450, 144);
+            this.btnAddMember.Name = "btnAddMember";
+            this.btnAddMember.Size = new System.Drawing.Size(175, 54);
+            this.btnAddMember.TabIndex = 3;
+            this.btnAddMember.Text = "Add member";
+            this.btnAddMember.UseVisualStyleBackColor = true;
+            this.btnAddMember.Click += new System.EventHandler(this.btnAddMember_Click);
             // 
             // button4
             // 
@@ -100,7 +101,7 @@
             this.ClientSize = new System.Drawing.Size(627, 346);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnAddMember);
             this.Controls.Add(this.btnCreateTeam);
             this.Controls.Add(this.btnMembers);
             this.Controls.Add(this.dgvTeams);
@@ -117,7 +118,7 @@
         private System.Windows.Forms.DataGridView dgvTeams;
         private System.Windows.Forms.Button btnMembers;
         private System.Windows.Forms.Button btnCreateTeam;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnAddMember;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button5;
     }

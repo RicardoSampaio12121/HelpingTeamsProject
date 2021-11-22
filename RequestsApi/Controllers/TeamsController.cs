@@ -49,5 +49,12 @@ namespace RequestsApi.Controllers
             await _repository.AddTeamMembersAsync(members);
             return Ok();
         }
+
+        [HttpPost("AddMember/{teamId}")]
+        public async Task<ActionResult<AddMemberDto>> AddMember(int teamId, AddMemberDto member)
+        {
+            await _repository.AddTeamMemberAsync(teamId, member);
+            return Ok();
+        }
     }
 }

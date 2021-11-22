@@ -24,6 +24,13 @@ namespace Logic.Repositories
             await Teams.CreateTeam(teamAsJson);
         }
 
+        public static async Task AddMemberToTeam(int teamId, TeamMemberModel member)
+        {
+            string memberAsJson = JsonConvert.SerializeObject(member);
+
+            await Teams.AddTeamMemberById(teamId, memberAsJson);
+        }
+
         public static async Task<IEnumerable<TeamModel>> GetTeamsAsync()
         {
             var output = await Teams.GetTeamsAsync();
