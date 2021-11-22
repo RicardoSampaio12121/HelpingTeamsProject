@@ -42,5 +42,10 @@ namespace Logic.Repositories
             var output = await Teams.GetTeamMembersAsync(teamId);
             return JsonConvert.DeserializeObject<IEnumerable<TeamMemberModel>>(output);
         }
+
+        public static async Task RemoveMemberFromTeam(int id)
+        {
+            await Teams.RemoveMemberFromTeam(id);
+        }
     }
 }

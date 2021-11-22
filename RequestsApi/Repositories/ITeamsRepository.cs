@@ -12,5 +12,6 @@ namespace RequestsApi.Repositories
         Task CreateTeamAsync(string organization);
         Task AddTeamMembersAsync(List<AddMemberDto> members);
         Task AddTeamMemberAsync(int teamId, AddMemberDto member);
+        Task RemoveTeamMember(int memberId);
     }
 }

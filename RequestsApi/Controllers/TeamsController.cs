@@ -56,5 +56,12 @@ namespace RequestsApi.Controllers
             await _repository.AddTeamMemberAsync(teamId, member);
             return Ok();
         }
+
+        [HttpDelete("RemoveMember/{memberId}")]
+        public async Task<ActionResult> RemoveMember(int memberId)
+        {
+            await _repository.RemoveTeamMember(memberId);
+            return NoContent();
+        }
     }
 }

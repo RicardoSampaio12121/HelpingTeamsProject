@@ -53,6 +53,12 @@ namespace Data.RepositoryApi
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
 
+        public static async Task RemoveMemberFromTeam(int memberId)
+        {
+            string url = $"https://localhost:44358/teams/RemoveMember/{memberId}";
+            await Connector.Connector.ApiClient.DeleteAsync(url);
+        }
+
         public static async Task CreateTeam(string teamAsJson)
         {
             string url = $"https://localhost:44358/teams/CreateTeam";

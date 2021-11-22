@@ -56,5 +56,15 @@ namespace Management
             Form addTeamMemberForm = new AddTeamMemberForm(teamId);
             addTeamMemberForm.Show();
         }
+
+        private void btnRemoveMember_Click(object sender, EventArgs e)
+        {
+            int index = dgvTeams.SelectedRows[0].Index;
+            var row = dgvTeams.Rows[index];
+            int teamId = int.Parse(row.Cells[0].Value.ToString());
+
+            Form removeTeamMemberForm = new RemoveTeamMemberForm(teamId);
+            removeTeamMemberForm.Show();
+        }
     }
 }
