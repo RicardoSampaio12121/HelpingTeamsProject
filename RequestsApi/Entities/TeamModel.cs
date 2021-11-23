@@ -4,7 +4,7 @@ namespace RequestsApi.Entities
 {
     public record TeamModel
     {
-        public int Id { get; init; }
-        public string Location { get; init; }
+        public int Id { get; set; }
+        public string Location { get; set; }
     }
 }

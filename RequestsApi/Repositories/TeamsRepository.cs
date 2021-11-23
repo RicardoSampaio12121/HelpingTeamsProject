@@ -59,6 +59,27 @@ namespace RequestsApi.Repositories
             await con.CloseAsync();
         }
 
+        public async Task<TeamModel> GetTeamByIdAsync(int id)
+        {
+            TeamModel team = new();
+
+            var con = new MySqlConnection(TeamsRepository.con);
+            const string sql = "SELECT * FROM teams WHERE id = @id";
+            await using MySqlCommand cmd = new(sql, con);
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+
+            await con.OpenAsync();
+            var sqlDr = await cmd.ExecuteReaderAsync();
+
+            while (await sqlDr.ReadAsync())
+            {
+                team.Id = int.Parse(sqlDr[0].ToString());
+                team.Location = sqlDr[1].ToString();
+            }
+            
+            return team;
+        }
+
         public async Task<IEnumerable<TeamModel>> GetTeamsAsync()
         {
             var con = new MySqlConnection(TeamsRepository.con);

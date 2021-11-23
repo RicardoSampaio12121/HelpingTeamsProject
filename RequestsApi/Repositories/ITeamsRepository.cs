@@ -13,5 +13,6 @@ namespace RequestsApi.Repositories
         Task AddTeamMembersAsync(List<AddMemberDto> members);
         Task AddTeamMemberAsync(int teamId, AddMemberDto member);
         Task RemoveTeamMember(int memberId);
+        Task<TeamModel> GetTeamByIdAsync(int id);
     }
 }

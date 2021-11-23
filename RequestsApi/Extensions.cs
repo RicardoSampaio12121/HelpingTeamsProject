@@ -18,12 +18,27 @@ namespace RequestsApi
             return new ProductDto(product.Name, product.Quantity);
         }
 
+        public static ReturnProductDto AsReturnProductDto(this Product product)
+        {
+            return new ReturnProductDto(product.Name, product.Quantity);
+        }
+
+        public static TeamDto AsTeamDto(this TeamModel team)
+        {
+            return new TeamDto(team.Id, team.Location);
+        }
+
         public static ReturnTeamDto AsReturnTeamDto(this TeamModel team)
         {
             return new ReturnTeamDto(team.Id, team.Location);
         }
 
-        public static ReturnTeamMemberDto AsReturnMemberDto(this TeamMemberModel member)
+        //public static TeamMemberDto AsReturnMemberDto(this TeamMemberModel member)
+        //{
+        //    return new TeamMemberDto(member.Id, member.Name, member.Surname, member.Team, member.Organization);
+        //}
+
+        public static ReturnTeamMemberDto AsReturnTeamMemberDto(this TeamMemberModel member)
         {
             return new ReturnTeamMemberDto(member.Id, member.Name, member.Surname, member.Team, member.Organization);
         }
