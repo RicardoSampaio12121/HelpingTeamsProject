@@ -17,13 +17,13 @@ namespace RequestsApi.Controllers
     [Route("products")]
     public class ProductsController : ControllerBase
     {
-        private readonly IManagementRepository _repository;
+        private readonly IProductsRepository _repository;
      
         /// <summary>
         /// Constructor for the controller
         /// </summary>
         /// <param name="repository"></param>
-        public ProductsController(IManagementRepository repository)
+        public ProductsController(IProductsRepository repository)
         {
             this._repository = repository;
         }

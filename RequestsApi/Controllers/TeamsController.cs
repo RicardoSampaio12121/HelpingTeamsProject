@@ -117,5 +117,20 @@ namespace RequestsApi.Controllers
             await _repository.RemoveTeamMember(memberId);
             return NoContent();
         }
+
+        [HttpDelete("RemoveTeam/{teamId}")]
+        public async Task<ActionResult> RemoveTeam(int teamId)
+        {
+            await _repository.RemoveTeam(teamId);
+            return NoContent();
+        }
+
+        [HttpDelete("RemoveAllTeamMembers/{teamId}")]
+        public async Task<ActionResult> RemoveAllTeamMembers(int teamId)
+        {
+            await _repository.RemoveAllTeamMembers(teamId);
+            return NoContent();
+        }
+
     }
 }

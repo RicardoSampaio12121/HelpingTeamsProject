@@ -47,5 +47,11 @@ namespace Logic.Repositories
         {
             await Teams.RemoveMemberFromTeam(id);
         }
+
+        public static async Task RemoveTeam(int teamId)
+        {
+            await Teams.RemoveAllTeamMembers(teamId);
+            await Teams.RemoveTeam(teamId);
+        }
     }
 }

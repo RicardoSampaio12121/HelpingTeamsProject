@@ -33,7 +33,7 @@
             this.btnCreateTeam = new System.Windows.Forms.Button();
             this.btnAddMember = new System.Windows.Forms.Button();
             this.btnRemoveMember = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.btnRemoveTeam = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeams)).BeginInit();
             this.SuspendLayout();
             // 
@@ -86,21 +86,22 @@
             this.btnRemoveMember.UseVisualStyleBackColor = true;
             this.btnRemoveMember.Click += new System.EventHandler(this.btnRemoveMember_Click);
             // 
-            // button5
+            // btnRemoveTeam
             // 
-            this.button5.Location = new System.Drawing.Point(450, 280);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(175, 54);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnRemoveTeam.Location = new System.Drawing.Point(450, 280);
+            this.btnRemoveTeam.Name = "btnRemoveTeam";
+            this.btnRemoveTeam.Size = new System.Drawing.Size(175, 54);
+            this.btnRemoveTeam.TabIndex = 5;
+            this.btnRemoveTeam.Text = "Remove team";
+            this.btnRemoveTeam.UseVisualStyleBackColor = true;
+            this.btnRemoveTeam.Click += new System.EventHandler(this.btnRemoveTeam_Click);
             // 
             // TeamsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(627, 346);
-            this.Controls.Add(this.button5);
+            this.Controls.Add(this.btnRemoveTeam);
             this.Controls.Add(this.btnRemoveMember);
             this.Controls.Add(this.btnAddMember);
             this.Controls.Add(this.btnCreateTeam);
@@ -121,6 +122,6 @@
         private System.Windows.Forms.Button btnCreateTeam;
         private System.Windows.Forms.Button btnAddMember;
         private System.Windows.Forms.Button btnRemoveMember;
-        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button btnRemoveTeam;
     }
 }

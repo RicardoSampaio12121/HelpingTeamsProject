@@ -9,7 +9,7 @@ namespace RequestsApi.Repositories
     /// Interface for the repository to manage some function that operate in the requests database that only the
     /// people responsible for the shipping of products can access
     /// </summary>
-    public interface IManagementRepository
+    public interface IProductsRepository
     {
         /// <summary>
         /// Returns a list of the available products

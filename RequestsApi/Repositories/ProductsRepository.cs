@@ -10,8 +10,9 @@ namespace RequestsApi.Repositories
     /// <summary>
     /// Repository to manage some functions that only the people responsible for the shipping of products can access
     /// </summary>
-    public class ManagementRepository : IManagementRepository
+    public class ProductsRepository : IProductsRepository
     {
+        //TODO: Take the connection string to a secure place
         private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=root;Pwd=thethreedeadlyhallows;";
         //private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=claudio;Pwd=cmffs1810;";
 
@@ -23,7 +24,7 @@ namespace RequestsApi.Repositories
         /// </returns>
         public async Task<IEnumerable<Product>> GetProductsAsync()
         {
-            var con = new MySqlConnection(ManagementRepository.con);
+            var con = new MySqlConnection(ProductsRepository.con);
             const string sql = "SELECT * FROM available_products";
             List<Product> output = new();
 
@@ -48,7 +49,7 @@ namespace RequestsApi.Repositories
 
         public async Task<Product> GatherProductAsync(int productId)
         {
-            MySqlConnection con = new(ManagementRepository.con);
+            MySqlConnection con = new(ProductsRepository.con);
             string sql = $"SELECT * FROM available_products WHERE id = '{productId}'";
 
             await using MySqlCommand cmd = new(sql, con);
@@ -68,7 +69,7 @@ namespace RequestsApi.Repositories
 
         public async Task<Product> GatherProductByNameAsync(string productName)
         {
-            MySqlConnection con = new(ManagementRepository.con);
+            MySqlConnection con = new(ProductsRepository.con);
             string sql = $"SELECT * FROM available_products WHERE name = '{productName}'";
 
             await using MySqlCommand cmd = new(sql, con);
@@ -88,7 +89,7 @@ namespace RequestsApi.Repositories
 
         public async Task CreateProduct(CreateProductDto product)
         {
-            MySqlConnection con = new(ManagementRepository.con);
+            MySqlConnection con = new(ProductsRepository.con);
             const string sql =
                 "INSERT INTO available_products (name, quantity) VALUE (@name, @quantity)";
             
@@ -102,34 +103,9 @@ namespace RequestsApi.Repositories
             await con.CloseAsync();
         }
 
-        //public async Task CreateTeam(TeamModel team)
-        //{
-        //    MySqlConnection con = new(ManagementRepository.con);
-        //    string sqlTeam =
-        //        $"INSERT INTO teams (location) VALUES ({team.Location})";
-
-        //    string sqlMembers = $"INSERT INTO team_members (name, surname, team, organization) VALUES";
-
-        //    foreach(var member in team.TeamMembers)
-        //    {
-        //        sqlMembers += $" ({member.Name}, {member.Surname}, (SELECT MAX(id) FROM teams), {member.Organization}),";
-        //    }
-
-        //    sqlMembers = sqlMembers.Remove(sqlMembers.Length - 1);
-
-        //    await using MySqlCommand cmdMembers = new(sqlMembers, con);
-        //    await using MySqlCommand cmdTeam = new(sqlTeam, con);
-            
-        //    await con.OpenAsync();
-
-        //    await cmdTeam.ExecuteNonQueryAsync();
-        //    await cmdMembers.ExecuteNonQueryAsync();
-        //    await con.CloseAsync();
-        //}
-
         public async Task AddStock(int id, int quantity)
         {
-            MySqlConnection con = new(ManagementRepository.con);
+            MySqlConnection con = new(ProductsRepository.con);
             string sql =
                $"UPDATE available_products SET quantity=quantity+'{quantity}' WHERE id='{id}'";
 

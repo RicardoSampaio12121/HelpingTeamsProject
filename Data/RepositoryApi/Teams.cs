@@ -11,9 +11,11 @@ namespace Data.RepositoryApi
 {
     public static class Teams
     {
+        private const string standartUrl = "https://localhost:44358/teams";
+
         public static async Task<string> GetTeamsAsync()
         {
-            string url = "https://localhost:44358/teams/GetTeams";
+            string url = $"{standartUrl}/GetTeams";
 
             using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
             {
@@ -30,7 +32,7 @@ namespace Data.RepositoryApi
 
         public static async Task<string> GetTeamMembersAsync(int teamId)
         {
-            string url = $"https://localhost:44358/teams/GetTeamMembers/{teamId}";
+            string url = $"{standartUrl}/GetTeamMembers/{teamId}";
 
             using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
             {
@@ -47,21 +49,33 @@ namespace Data.RepositoryApi
 
         public static async Task AddTeamMemberById(int teamId, string memberAsJson)
         {
-            string url = $"https://localhost:44358/teams/AddMember/{teamId}";
+            string url = $"{standartUrl}/AddMember/{teamId}";
 
             var stringContent = new StringContent(memberAsJson, Encoding.UTF8, "application/json");
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
 
+        public static async Task RemoveAllTeamMembers(int teamId)
+        {
+            string url = $"{standartUrl}/RemoveAllTeamMembers/{teamId}";
+            await Connector.Connector.ApiClient.DeleteAsync(url);
+        }
+
+        public static async Task RemoveTeam(int teamId)
+        {
+            string url = $"{standartUrl}/RemoveTeam/{teamId}";
+            await Connector.Connector.ApiClient.DeleteAsync(url);
+        }
+
         public static async Task RemoveMemberFromTeam(int memberId)
         {
-            string url = $"https://localhost:44358/teams/RemoveMember/{memberId}";
+            string url = $"{standartUrl}/RemoveMember/{memberId}";
             await Connector.Connector.ApiClient.DeleteAsync(url);
         }
 
         public static async Task CreateTeam(string teamAsJson)
         {
-            string url = $"https://localhost:44358/teams/CreateTeam";
+            string url = $"{standartUrl}/CreateTeam";
 
             var stringContent = new StringContent(teamAsJson, Encoding.UTF8, "application/json");
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
@@ -69,16 +83,10 @@ namespace Data.RepositoryApi
 
         public static async Task AddTeamMembers(string membersAsJson)
         {
-            string url = $"https://localhost:44358/teams/AddMembers";
+            string url = $"{standartUrl}/AddMembers";
 
             var stringContent = new StringContent(membersAsJson, Encoding.UTF8, "application/json");
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
-
-
-
-        
-
-
     }
 }

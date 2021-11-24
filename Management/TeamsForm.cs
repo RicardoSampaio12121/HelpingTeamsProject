@@ -66,5 +66,19 @@ namespace Management
             Form removeTeamMemberForm = new RemoveTeamMemberForm(teamId);
             removeTeamMemberForm.Show();
         }
+
+        private async void btnRemoveTeam_Click(object sender, EventArgs e)
+        {
+            int index = dgvTeams.SelectedRows[0].Index;
+            var row = dgvTeams.Rows[index];
+            int teamId = int.Parse(row.Cells[0].Value.ToString());
+
+            //TODO: Add something like a personalized form to ask the user if he's sure he wants to delete the entire team
+
+            await TeamsManagement.RemoveTeam(teamId);
+
+            MessageBox.Show("Team removed successfully");
+            LoadDataGridView();
+        }
     }
 }

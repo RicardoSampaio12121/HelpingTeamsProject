@@ -11,16 +11,18 @@ namespace Data.RepositoryApi
 {
     public static class Products
     {
+        private const string standardUrl = "https://localhost:44358/products";
+
         public static async Task<string> GetProducts(string name = "")
         {
             string url;
             if (name == "")
             {
-                url = "https://localhost:44358/management/GetAvailableProducts";
+                url = $"{standardUrl}/GetAvailableProducts";
             }
             else
             {
-                url = $"https://localhost:44358/management/GetAvailableProduct/{name}";
+                url = $"{standardUrl}/GetAvailableProduct/{name}";
             }
 
             using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
@@ -38,7 +40,7 @@ namespace Data.RepositoryApi
 
         public static async Task CreateProduct(string productAsJson)
         {
-            string url = "https://localhost:44358/management/CreateProduct";
+            string url = $"{standardUrl}/CreateProduct";
 
             var stringContent = new StringContent(productAsJson, Encoding.UTF8, "application/json");
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
@@ -46,7 +48,7 @@ namespace Data.RepositoryApi
 
         public static async Task AddStock(ProductModel product)
         {
-            string url = $"https://localhost:44358/management/AddStock/{product.Id}";
+            string url = $"{standardUrl}/AddStock/{product.Id}";
 
             //var stringContent = new StringContent(productAsJson, Encoding.UTF8, "application/json");
             var result = await Connector.Connector.ApiClient.PutAsJsonAsync(url, product);

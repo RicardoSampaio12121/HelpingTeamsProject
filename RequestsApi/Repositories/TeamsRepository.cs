@@ -131,6 +131,32 @@ namespace RequestsApi.Repositories
             return output;
         }
 
+        public async Task RemoveAllTeamMembers(int teamId)
+        {
+            var con = new MySqlConnection(TeamsRepository.con);
+            string sql = "DELETE FROM team_members WHERE team = @team";
+
+            await using MySqlCommand cmd = new(sql, con);
+            cmd.Parameters.Add("@team", MySqlDbType.Int32).Value = teamId;
+
+            await con.OpenAsync();
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
+
+        public async Task RemoveTeam(int teamId)
+        {
+            var con = new MySqlConnection(TeamsRepository.con);
+            string sql = "DELETE FROM teams WHERE id = @id";
+
+            await using MySqlCommand cmd = new(sql, con);
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = teamId;
+
+            await con.OpenAsync();
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
+
         public async Task RemoveTeamMember(int memberId)
         {
             var con = new MySqlConnection(TeamsRepository.con);
