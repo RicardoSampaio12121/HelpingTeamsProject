@@ -15,12 +15,12 @@ namespace RequestsApi
         /// <returns></returns>
         public static ProductDto AsProductDto(this Product product)
         {
-            return new ProductDto(product.Name, product.Quantity);
+            return new ProductDto(product.Name, product.Quantity, product.UnitPrice);
         }
 
         public static ReturnProductDto AsReturnProductDto(this Product product)
         {
-            return new ReturnProductDto(product.Name, product.Quantity);
+            return new ReturnProductDto(product.Name, product.Quantity, product.UnitPrice);
         }
 
         public static TeamDto AsTeamDto(this TeamModel team)

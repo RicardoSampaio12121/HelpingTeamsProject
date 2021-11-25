@@ -38,7 +38,8 @@ namespace RequestsApi.Repositories
                 {
                     Id = int.Parse(sqlDr[0].ToString()),
                     Name = sqlDr[1].ToString(),
-                    Quantity = int.Parse(sqlDr[2].ToString())
+                    Quantity = int.Parse(sqlDr[2].ToString()),
+                    UnitPrice = float.Parse(sqlDr[3].ToString())
                 });
             }
             await sqlDr.CloseAsync();
@@ -61,7 +62,8 @@ namespace RequestsApi.Repositories
             {
                 Id = sqlDr.GetInt32(0),
                 Name = sqlDr.GetString(1),
-                Quantity = sqlDr.GetInt32(2)
+                Quantity = sqlDr.GetInt32(2),
+                UnitPrice = sqlDr.GetFloat(3)
             };
 
             return output;
@@ -81,7 +83,8 @@ namespace RequestsApi.Repositories
             {
                 Id = sqlDr.GetInt32(0),
                 Name = sqlDr.GetString(1),
-                Quantity = sqlDr.GetInt32(2)
+                Quantity = sqlDr.GetInt32(2),
+                UnitPrice = sqlDr.GetFloat(3)
             };
 
             return output;
@@ -91,13 +94,14 @@ namespace RequestsApi.Repositories
         {
             MySqlConnection con = new(ProductsRepository.con);
             const string sql =
-                "INSERT INTO available_products (name, quantity) VALUE (@name, @quantity)";
+                "INSERT INTO available_products (name, quantity, unit_price) VALUE (@name, @quantity, @price)";
             
             await using MySqlCommand cmd = new(sql, con);
             await con.OpenAsync();
 
-            cmd.Parameters.AddWithValue(@"name", product.Name);
-            cmd.Parameters.AddWithValue("@quantity", product.Quantity);
+            cmd.Parameters.Add("@name", MySqlDbType.VarChar, 100).Value = product.Name;
+            cmd.Parameters.Add("@quantity", MySqlDbType.Int32).Value = product.Quantity;
+            cmd.Parameters.Add("@name", MySqlDbType.VarChar, 100).Value = product.price;
 
             await cmd.ExecuteNonQueryAsync();
             await con.CloseAsync();
@@ -107,14 +111,16 @@ namespace RequestsApi.Repositories
         {
             MySqlConnection con = new(ProductsRepository.con);
             string sql =
-               $"UPDATE available_products SET quantity=quantity+'{quantity}' WHERE id='{id}'";
+               $"UPDATE available_products SET quantity = quantity + @toAdd WHERE id = @id";
 
             await using MySqlCommand cmd = new(sql, con);
-            await con.OpenAsync();
 
+            cmd.Parameters.Add("@toAdd", MySqlDbType.Int32).Value = quantity;
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = id;
+
+            await con.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
             await con.CloseAsync();
         }
-
     }
 }

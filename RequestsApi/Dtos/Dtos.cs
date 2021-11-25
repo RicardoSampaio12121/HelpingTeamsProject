@@ -8,9 +8,9 @@ namespace RequestsApi.Dtos
     /// </summary>
     /// <param name="Name"></param>
     /// <param name="Quantity"></param>
-    public record ProductDto(string Name, [Range(1, 1000)] int Quantity);
-    public record ReturnProductDto(string Name, [Range(1, 1000)] int Quantity);
-    public record CreateProductDto(string Name, [Range(1, 1000)] int Quantity);
+    public record ProductDto(string Name, [Range(1, 1000)] int Quantity, float price);
+    public record ReturnProductDto(string Name, [Range(1, 1000)] int Quantity, float price);
+    public record CreateProductDto(string Name, [Range(1, 1000)] int Quantity, float price);
 
     public record TeamDto(int id, string location);
     public record CreateTeamDto(string location);

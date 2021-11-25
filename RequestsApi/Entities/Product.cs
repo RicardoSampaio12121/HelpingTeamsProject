@@ -21,5 +21,7 @@ namespace RequestsApi.Entities
         [Required]
         [Range(1, 1000)]
         public int Quantity { get; init; }
+
+        public float UnitPrice { get; init; }
     }
 }
