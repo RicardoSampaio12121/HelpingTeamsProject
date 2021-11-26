@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using RequestsApi.Entities;
 using MySql.Data.MySqlClient;
 using RequestsApi.Dtos;
+using System;
 
 namespace RequestsApi.Repositories
 {
@@ -120,6 +121,43 @@ namespace RequestsApi.Repositories
 
             await con.OpenAsync();
             await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
+
+        public async Task CreateRequest(int teamId)
+        {
+            MySqlConnection con = new(ProductsRepository.con);
+
+            string sql = "INSERT INTO pending_requests (teamId, date) VALUES (@team, @date)";
+
+            await using MySqlCommand cmd = new(sql, con);
+
+            cmd.Parameters.Add("@team", MySqlDbType.Int32).Value = teamId;
+            cmd.Parameters.Add("@date", MySqlDbType.DateTime).Value = DateTime.Now;
+            
+            await con.OpenAsync();
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
+
+        public async Task AddProductsToRequest(List<MakeRequestDto> products)
+        {
+            MySqlConnection con = new(ProductsRepository.con);
+
+            string sql = "INSERT INTO pending_requests_products (product_id, quantity, pending_request_id) VALUES (@prod, @quant, (SELECT MAX(id) FROM pending_requests))";
+
+            await using MySqlCommand cmd = new(sql, con);
+            await con.OpenAsync();
+            foreach (var product in products)
+            {
+                cmd.Parameters.Add("@prod", MySqlDbType.Int32).Value = product.productId;
+                cmd.Parameters.Add("@quant", MySqlDbType.Int32).Value = product.quantity;
+
+                await cmd.ExecuteNonQueryAsync();
+
+                cmd.Parameters.Clear();
+            }
+            
             await con.CloseAsync();
         }
     }

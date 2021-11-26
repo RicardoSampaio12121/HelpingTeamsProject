@@ -1,10 +1,6 @@
 {
   "ExpandedNodes": [
-    "",
-    "\\Management",
-    "\\RequestsApi",
-    "\\RequestsApi\\Controllers",
-    "\\RequestsApi\\Dtos"
+    ""
   ],
   "SelectedNode": "\\RequestApiClients.sln",
   "PreviewInSolutionExplorer": false

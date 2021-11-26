@@ -23,5 +23,8 @@ namespace RequestsApi.Repositories
         //Task CreateTeam(TeamModel team);
 
         Task AddStock(int id, int quantity);
+
+        Task CreateRequest(int teamId);
+        Task AddProductsToRequest(List<MakeRequestDto> products);
     }
 }

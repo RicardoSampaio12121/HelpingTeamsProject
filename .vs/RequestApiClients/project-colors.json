@@ -30,7 +30,12 @@
       "ProjectGuid": "3ae7a1d8-1856-4cbb-b749-64dd4cd704fa",
       "DisplayName": "Management",
       "ColorIndex": 4
+    },
+    "779b3add-a1f5-4fb1-ae6b-687735a79a5e": {
+      "ProjectGuid": "779b3add-a1f5-4fb1-ae6b-687735a79a5e",
+      "DisplayName": "Cliente",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 6
 }

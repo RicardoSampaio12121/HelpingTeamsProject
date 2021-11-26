@@ -20,7 +20,7 @@ namespace RequestsApi
 
         public static ReturnProductDto AsReturnProductDto(this Product product)
         {
-            return new ReturnProductDto(product.Name, product.Quantity, product.UnitPrice);
+            return new ReturnProductDto(product.Id, product.Name, product.Quantity, product.UnitPrice);
         }
 
         public static TeamDto AsTeamDto(this TeamModel team)

@@ -92,5 +92,15 @@ namespace RequestsApi.Controllers
             await _repository.AddStock(id, quantityToAdd);
             return NoContent();
         }
+
+        [HttpPost("MakeRequest/{teamId}")]
+        public async Task<ActionResult> MakeRequest(int teamId, List<MakeRequestDto> products)
+        {
+            await _repository.CreateRequest(teamId);
+            await _repository.AddProductsToRequest(products);
+
+            //TODO: Return something acording to the standards
+            return Ok();
+        }
     }
 }
