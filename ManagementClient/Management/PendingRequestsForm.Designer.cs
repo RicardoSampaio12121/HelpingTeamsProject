@@ -76,6 +76,7 @@
             this.btnDeclineRequest.TabIndex = 3;
             this.btnDeclineRequest.Text = "Decline Request";
             this.btnDeclineRequest.UseVisualStyleBackColor = true;
+            this.btnDeclineRequest.Click += new System.EventHandler(this.btnDeclineRequest_Click);
             // 
             // PendingRequestsForm
             // 

@@ -41,8 +41,6 @@ namespace Management
             int reqId = int.Parse(row.Cells[0].Value.ToString());
             int teamId = int.Parse(row.Cells[1].Value.ToString());
 
-            MessageBox.Show($"Req: {reqId}    Team: {teamId}");
-
             try
             {
                 //2º -> A Logic que trate de aceitar a request em si
@@ -55,6 +53,19 @@ namespace Management
             MessageBox.Show("Request successfully accepted!");
 
             FillDataGridView();
+        }
+
+        private async void btnDeclineRequest_Click(object sender, EventArgs e)
+        {
+            int index = dgvPendingRequests.SelectedRows[0].Index;
+            var row = dgvPendingRequests.Rows[index];
+            int reqId = int.Parse(row.Cells[0].Value.ToString());
+            int teamId = int.Parse(row.Cells[1].Value.ToString());
+
+            await ProductsManagement.DeclineRequest(reqId, teamId);
+
+            MessageBox.Show("Request successfully accepted!");
+
         }
     }
 }

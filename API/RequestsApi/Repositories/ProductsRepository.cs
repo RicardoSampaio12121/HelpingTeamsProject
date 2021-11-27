@@ -273,7 +273,7 @@ namespace RequestsApi.Repositories
             return output;
         }
 
-        public async Task AcceptRequest(AcceptRequestDto info)
+        public async Task HandleRequest(AcceptRequestDto info)
         {
             MySqlConnection con = new(ProductsRepository.con);
 
@@ -291,7 +291,7 @@ namespace RequestsApi.Repositories
             await con.CloseAsync();
         }
 
-        public async Task AcceptRequestProducts(List<int> ids)
+        public async Task HandleRequestProducts(List<int> ids)
         {
             MySqlConnection con = new(ProductsRepository.con);
 

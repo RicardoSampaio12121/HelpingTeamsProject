@@ -72,17 +72,17 @@ namespace Data.RepositoryApi
             }
         }
 
-        public static async Task AcceptRequest(int requestId, string info)
+        public static async Task HandleRequest(int requestId, string info)
         {
-            string url = $"{standardUrl}/AcceptRequest/{requestId}";
+            string url = $"{standardUrl}/HandleRequest/{requestId}";
 
             var stringContent = new StringContent(info, Encoding.UTF8, "application/json");
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
 
-        public static async Task AcceptRequestProducts(string prodIds)
+        public static async Task HandleRequestProducts(string prodIds)
         {
-            string url = $"{standardUrl}/AcceptRequestProducts";
+            string url = $"{standardUrl}/HandleRequestProducts";
 
             var stringContent = new StringContent(prodIds, Encoding.UTF8, "application/json");
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);

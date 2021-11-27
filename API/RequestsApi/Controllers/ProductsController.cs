@@ -131,17 +131,17 @@ namespace RequestsApi.Controllers
             return output;
         }
 
-        [HttpPost("AcceptRequest/{requestId}")]
+        [HttpPost("HandleRequest/{requestId}")]
         public async Task<ActionResult> AcceptRequest(int requestId, AcceptRequestDto info)
         {
-            await _repository.AcceptRequest(info);
+            await _repository.HandleRequest(info);
             return Ok();
         }
 
-        [HttpPost("AcceptRequestProducts")]
-        public async Task<ActionResult> AcceptRequestProducts(List<int> ids)
+        [HttpPost("HandleRequestProducts")]
+        public async Task<ActionResult> HandleRequestProducts(List<int> ids)
         {
-            await _repository.AcceptRequestProducts(ids);
+            await _repository.HandleRequestProducts(ids);
             return Ok();
         }
 

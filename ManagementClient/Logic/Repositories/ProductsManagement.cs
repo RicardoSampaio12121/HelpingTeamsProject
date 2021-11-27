@@ -51,7 +51,7 @@ namespace Logic.Repositories
                     price += i.propQuantity * i.prodPrice;
                 }
 
-                AcceptRequest req = new()
+                HandleRequest req = new()
                 {
                     teamId = teamId,
                     price = price,
@@ -62,7 +62,7 @@ namespace Logic.Repositories
                 string json = JsonConvert.SerializeObject(req);
 
                 //3º -> Adicionar à tabela de requests como aceite
-                await Products.AcceptRequest(reqId, json);
+                await Products.HandleRequest(reqId, json);
 
                 //4º -> Adicionar os produtos a uma tabela à parte
                 List<int> prodIds = new();
@@ -73,7 +73,7 @@ namespace Logic.Repositories
                 }
 
                 string idsAsJson = JsonConvert.SerializeObject(prodIds);
-                await Products.AcceptRequestProducts(idsAsJson);
+                await Products.HandleRequestProducts(idsAsJson);
 
                 //5º -> Eliminar da tabela pending_requests_products
                 await Products.DeletePendingRequestProducts(reqId);
@@ -101,6 +101,46 @@ namespace Logic.Repositories
             {
                 throw;
             }
+        }
+
+        public static async Task DeclineRequest(int reqId, int teamId)
+        {
+            var infoAsJson = await Products.GetIdQuantityPrice(reqId);
+            var info = JsonConvert.DeserializeObject<IEnumerable<ToAcceptRequestInfo>>(infoAsJson);
+
+            float price = 0;
+
+            foreach (var i in info)
+            {
+                price += i.propQuantity * i.prodPrice;
+            }
+
+            HandleRequest req = new()
+            {
+                teamId = teamId,
+                price = price,
+                decision = "declined"
+            };
+
+            //2º -> Serielizar a informação para json
+            string json = JsonConvert.SerializeObject(req);
+
+            await Products.HandleRequest(reqId, json);
+
+            List<int> prodIds = new();
+
+            foreach (var i in info)
+            {
+                prodIds.Add(i.propId);
+            }
+
+            string idsAsJson = JsonConvert.SerializeObject(prodIds);
+            await Products.HandleRequestProducts(idsAsJson);
+
+            await Products.DeletePendingRequestProducts(reqId);
+
+            //6º -> Eliminar da tabela pending_requests
+            await Products.DeletePendingReques(reqId);
         }
 
         public static async Task CreateProduct(Entities.ProductModel product)

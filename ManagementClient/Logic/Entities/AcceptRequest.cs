@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Entities
 {
-    public record AcceptRequest
+    public record HandleRequest
     {
         public int teamId { get; set; }
         public float price { get; set; }
