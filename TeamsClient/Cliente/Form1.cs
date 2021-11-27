@@ -1,22 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Logic;
+using System;
 using System.Windows.Forms;
-using Logic;
 
 namespace Cliente
 {
     public partial class Form1 : Form
     {
+        private int teamId;
+
         public Form1()
         {
             InitializeComponent();
             ApiConnector.Connect();
+            using (var form = new TempLoginForm())
+            {
+                var result = form.ShowDialog();
+                teamId = form.TeamId;
+            }
         }
 
         private Form activeForm = null;
@@ -42,7 +42,7 @@ namespace Cliente
 
         private void btnMakeRequestMenu_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new MakeRequestForm());
+            OpenChildForm(new MakeRequestForm(teamId));
         }
     }
 }

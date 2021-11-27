@@ -9,12 +9,14 @@ namespace Cliente
     public partial class MakeRequestForm : Form
     {
         private List<ProductInBasket> basket;
+        private int _teamId;
 
-        public MakeRequestForm()
+        public MakeRequestForm(int teamId)
         {
             InitializeComponent();
             LoadDataGridView();
             basket = new();
+            _teamId = teamId;
         }
 
         private async void LoadDataGridView()
@@ -53,8 +55,8 @@ namespace Cliente
 
         private async void btnSubmit_Click(object sender, System.EventArgs e)
         {
-            int teamId = int.Parse(txtTeamId.Text);
-            await ProductsManagement.MakeRequest(teamId, basket);
+            await ProductsManagement.MakeRequest(_teamId, basket);
+            MessageBox.Show("Request done successfully!");
         }
     }
 }

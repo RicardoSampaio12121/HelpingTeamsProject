@@ -35,7 +35,42 @@
       "ProjectGuid": "779b3add-a1f5-4fb1-ae6b-687735a79a5e",
       "DisplayName": "Cliente",
       "ColorIndex": 5
+    },
+    "84f48eb7-e380-4b50-b0e9-9e12ff75dbea": {
+      "ProjectGuid": "84f48eb7-e380-4b50-b0e9-9e12ff75dbea",
+      "DisplayName": "Logic",
+      "ColorIndex": 6
+    },
+    "05efb769-c643-45d4-a9f2-df45d889b0ce": {
+      "ProjectGuid": "05efb769-c643-45d4-a9f2-df45d889b0ce",
+      "DisplayName": "Data",
+      "ColorIndex": 7
+    },
+    "8b1739ff-f5c3-4a9a-9e56-0a4e364b0c94": {
+      "ProjectGuid": "8b1739ff-f5c3-4a9a-9e56-0a4e364b0c94",
+      "DisplayName": "Cliente",
+      "ColorIndex": 8
+    },
+    "765e4160-4581-4124-9ca8-66dbfba71350": {
+      "ProjectGuid": "765e4160-4581-4124-9ca8-66dbfba71350",
+      "DisplayName": "Management",
+      "ColorIndex": 9
+    },
+    "bc52b403-582c-4581-bf75-8102afbd79e8": {
+      "ProjectGuid": "bc52b403-582c-4581-bf75-8102afbd79e8",
+      "DisplayName": "Data",
+      "ColorIndex": 10
+    },
+    "1ba4cfb0-a406-4458-a542-b1e469f429ac": {
+      "ProjectGuid": "1ba4cfb0-a406-4458-a542-b1e469f429ac",
+      "DisplayName": "Logic",
+      "ColorIndex": 11
+    },
+    "46e3090b-cb17-4cd6-8341-32542491d90d": {
+      "ProjectGuid": "46e3090b-cb17-4cd6-8341-32542491d90d",
+      "DisplayName": "RequestsApi",
+      "ColorIndex": 12
     }
   },
-  "NextColorIndex": 6
+  "NextColorIndex": 13
 }
