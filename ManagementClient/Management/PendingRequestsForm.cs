@@ -44,7 +44,7 @@ namespace Management
             try
             {
                 //2º -> A Logic que trate de aceitar a request em si
-                await ProductsManagement.AcceptRequest(reqId, teamId);
+                await ProductsManagement.HandleRequest(reqId, teamId, "accepted");
             }
             catch (Exception ex)
             {
@@ -62,10 +62,10 @@ namespace Management
             int reqId = int.Parse(row.Cells[0].Value.ToString());
             int teamId = int.Parse(row.Cells[1].Value.ToString());
 
-            await ProductsManagement.DeclineRequest(reqId, teamId);
+            await ProductsManagement.HandleRequest(reqId, teamId, "declined");
 
-            MessageBox.Show("Request successfully accepted!");
-
+            MessageBox.Show("Request successfully declined!");
+            FillDataGridView();
         }
     }
 }

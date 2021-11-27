@@ -36,10 +36,12 @@ namespace Logic.Repositories
             return JsonConvert.DeserializeObject<Entities.ProductModel>(product);
         }
 
-        public static async Task AcceptRequest(int reqId, int teamId)
+        public static async Task HandleRequest(int reqId, int teamId, string decision)
         {
             try
             {
+                List<int> prodIds = new();
+
                 //1º -> Recolher preço dos produtos, id dos produtos e quantidade de cada produto encomendada 
                 var infoAsJson = await Products.GetIdQuantityPrice(reqId);
                 var info = JsonConvert.DeserializeObject<IEnumerable<ToAcceptRequestInfo>>(infoAsJson);
@@ -49,13 +51,14 @@ namespace Logic.Repositories
                 foreach (var i in info)
                 {
                     price += i.propQuantity * i.prodPrice;
+                    prodIds.Add(i.propId);
                 }
 
                 HandleRequest req = new()
                 {
                     teamId = teamId,
                     price = price,
-                    decision = "accepted"
+                    decision = decision
                 };
 
                 //2º -> Serielizar a informação para json
@@ -65,12 +68,6 @@ namespace Logic.Repositories
                 await Products.HandleRequest(reqId, json);
 
                 //4º -> Adicionar os produtos a uma tabela à parte
-                List<int> prodIds = new();
-
-                foreach (var i in info)
-                {
-                    prodIds.Add(i.propId);
-                }
 
                 string idsAsJson = JsonConvert.SerializeObject(prodIds);
                 await Products.HandleRequestProducts(idsAsJson);
@@ -81,22 +78,24 @@ namespace Logic.Repositories
                 //6º -> Eliminar da tabela pending_requests
                 await Products.DeletePendingReques(reqId);
 
-                //7º -> Atualizar quantidade na tabela available_products
-
-                List<UpdateAvailableProductsQuantityModel> toUpdate = new();
-
-                foreach (var i in info)
+                if (decision == "accepted")
                 {
-                    toUpdate.Add(new UpdateAvailableProductsQuantityModel()
-                    {
-                        prodId = i.propId,
-                        quantityToTake = i.propQuantity
-                    });
-                }
+                    //7º -> Atualizar quantidade na tabela available_products
 
-                string toUpdateAsJson = JsonConvert.SerializeObject(toUpdate);
-                await Products.UpdateProductsQuantity(toUpdateAsJson);
-            
+                    List<UpdateAvailableProductsQuantityModel> toUpdate = new();
+
+                    foreach (var i in info)
+                    {
+                        toUpdate.Add(new UpdateAvailableProductsQuantityModel()
+                        {
+                            prodId = i.propId,
+                            quantityToTake = i.propQuantity
+                        });
+                    }
+
+                    string toUpdateAsJson = JsonConvert.SerializeObject(toUpdate);
+                    await Products.UpdateProductsQuantity(toUpdateAsJson);
+                }
             }catch(Exception ex)
             {
                 throw;
