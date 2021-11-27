@@ -52,5 +52,10 @@ namespace RequestsApi
         {
             return new ReturnPendingRequestProductDto(product.Id, product.productId, product.quantity, product.pendingRequestId);
         }
+
+        public static ReturnIdPriceQuantityDto AsReturnIdPriceQuantityDto(this IdPriceQuantityModel info)
+        {
+            return new ReturnIdPriceQuantityDto(info.id, info.price, info.quantity);
+        }
     }
 }

@@ -26,4 +26,10 @@ namespace RequestsApi.Dtos
     public record ReturnPendingRequestDto(int id, int productId, DateTime date);
 
     public record ReturnPendingRequestProductDto(int id, int productId, int quantity, int pendingRequestId);
+
+    public record ReturnIdPriceQuantityDto(int id, float price, int quantity);
+
+    public record AcceptRequestDto(int teamId, float price, string decision);
+
+    public record UpdateProductsQuantityDto(int prodId, int quantityToTake);
 }

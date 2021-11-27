@@ -65,6 +65,7 @@
             this.btnAcceptRequest.TabIndex = 2;
             this.btnAcceptRequest.Text = "Accept Request";
             this.btnAcceptRequest.UseVisualStyleBackColor = true;
+            this.btnAcceptRequest.Click += new System.EventHandler(this.btnAcceptRequest_Click);
             // 
             // btnDeclineRequest
             // 

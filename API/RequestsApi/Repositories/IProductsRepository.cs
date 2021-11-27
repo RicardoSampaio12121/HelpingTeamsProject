@@ -29,5 +29,11 @@ namespace RequestsApi.Repositories
         Task<IEnumerable<PendingRequestModel>> GetPendingRequestsByTeam(int teamId);
         Task<IEnumerable<PendingRequestProductModel>> GetPendingRequestProducts(int requestId);
         Task<IEnumerable<PendingRequestModel>> GetPendingRequests();
+        Task<IEnumerable<IdPriceQuantityModel>> GetIdPriceQuantity(int reqId);
+        Task AcceptRequest(AcceptRequestDto info);
+        Task AcceptRequestProducts(List<int> ids);
+        Task DeletePendingRequestProducts(int requestId);
+        Task DeletePendingRequest(int requestId);
+        Task UpdateProductsQuantity(List<UpdateProductsQuantityDto> toUpdate);
     }
 }

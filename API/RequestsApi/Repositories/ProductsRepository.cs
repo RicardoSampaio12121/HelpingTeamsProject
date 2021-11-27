@@ -244,5 +244,119 @@ namespace RequestsApi.Repositories
 
             return output;
         }
+
+        public async Task<IEnumerable<IdPriceQuantityModel>> GetIdPriceQuantity(int reqId)
+        {
+            List<IdPriceQuantityModel> output = new();
+
+            MySqlConnection con = new(ProductsRepository.con);
+            string sql = $"select ap.unit_price as prodPrice, prp.product_id AS prodId, prp.quantity AS prodQuantity from available_products ap inner join pending_requests_products prp ON prp.product_id = ap.id and prp.pending_request_id = @reqId";
+
+            await using MySqlCommand cmd = new(sql, con);
+            cmd.Parameters.Add("@reqId", MySqlDbType.Int32).Value = reqId;
+
+            await con.OpenAsync();
+            var sqlDr = await cmd.ExecuteReaderAsync();
+
+            while (await sqlDr.ReadAsync())
+            {
+                output.Add(new IdPriceQuantityModel()
+                {
+                    price = float.Parse(sqlDr[0].ToString()),
+                    id = int.Parse(sqlDr[1].ToString()),
+                    quantity = int.Parse(sqlDr[2].ToString())
+                });
+            }
+            await sqlDr.CloseAsync();
+            await con.CloseAsync();
+
+            return output;
+        }
+
+        public async Task AcceptRequest(AcceptRequestDto info)
+        {
+            MySqlConnection con = new(ProductsRepository.con);
+
+            string sql = "INSERT INTO requests (team_id, price, date, decision) VALUES (@teamId, @price, @date, @decision)";
+
+            await using MySqlCommand cmd = new(sql, con);
+            await con.OpenAsync();
+           
+            cmd.Parameters.Add("@teamId", MySqlDbType.Int32).Value = info.teamId;
+            cmd.Parameters.Add("@price", MySqlDbType.Float).Value = info.price;
+            cmd.Parameters.Add("@date", MySqlDbType.DateTime).Value = DateTime.Now;
+            cmd.Parameters.Add("@decision", MySqlDbType.VarChar, 100).Value = info.decision;
+
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
+
+        public async Task AcceptRequestProducts(List<int> ids)
+        {
+            MySqlConnection con = new(ProductsRepository.con);
+
+            string sql = "INSERT INTO requests_products (product_id, request_id) VALUES (@prodId, (SELECT MAX(id) FROM requests))";
+
+            await using MySqlCommand cmd = new(sql, con);
+            await con.OpenAsync();
+            
+            foreach (var id in ids)
+            {
+                cmd.Parameters.Add("@prodId", MySqlDbType.Int32).Value = id;
+
+                await cmd.ExecuteNonQueryAsync();
+                
+                cmd.Parameters.Clear();
+            }
+            await con.CloseAsync();
+        }
+
+        public async Task DeletePendingRequestProducts(int requestId)
+        {
+            var con = new MySqlConnection(ProductsRepository.con);
+            string sql = "DELETE FROM pending_requests_products WHERE pending_request_id = @id";
+
+            await using MySqlCommand cmd = new(sql, con);
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = requestId;
+
+            await con.OpenAsync();
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
+
+        public async Task DeletePendingRequest(int requestId)
+        {
+            var con = new MySqlConnection(ProductsRepository.con);
+            string sql = "DELETE FROM pending_requests WHERE id = @id";
+
+            await using MySqlCommand cmd = new(sql, con);
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = requestId;
+
+            await con.OpenAsync();
+            await cmd.ExecuteNonQueryAsync();
+            await con.CloseAsync();
+        }
+
+        public async Task UpdateProductsQuantity(List<UpdateProductsQuantityDto> toUpdate)
+        {
+            MySqlConnection con = new(ProductsRepository.con);
+            string sql =
+               $"UPDATE available_products SET quantity = quantity - @toTake WHERE id = @id";
+
+            await using MySqlCommand cmd = new(sql, con);
+
+            await con.OpenAsync();
+            
+            foreach (var values in toUpdate)
+            {
+                cmd.Parameters.Add("@toTake", MySqlDbType.Int32).Value = values.quantityToTake;
+                cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = values.prodId;
+                
+                await cmd.ExecuteNonQueryAsync();
+                cmd.Parameters.Clear();
+            }
+
+            await con.CloseAsync();
+        }
     }
 }

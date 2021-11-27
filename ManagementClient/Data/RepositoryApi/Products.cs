@@ -55,6 +55,59 @@ namespace Data.RepositoryApi
             }
         }
 
+        public static async Task<string> GetIdQuantityPrice(int reqId)
+        {
+            string url = $"{standardUrl}/GetIdPriceQuantity/{reqId}";
+
+            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task AcceptRequest(int requestId, string info)
+        {
+            string url = $"{standardUrl}/AcceptRequest/{requestId}";
+
+            var stringContent = new StringContent(info, Encoding.UTF8, "application/json");
+            var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
+        }
+
+        public static async Task AcceptRequestProducts(string prodIds)
+        {
+            string url = $"{standardUrl}/AcceptRequestProducts";
+
+            var stringContent = new StringContent(prodIds, Encoding.UTF8, "application/json");
+            var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
+        }
+
+        public static async Task DeletePendingReques(int reqId)
+        {
+            string url = $"{standardUrl}/DeletePendingRequest/{reqId}";
+            await Connector.Connector.ApiClient.DeleteAsync(url);
+        }
+
+        public static async Task DeletePendingRequestProducts(int reqId)
+        {
+            string url = $"{standardUrl}/DeletePendingRequestProducts/{reqId}";
+            await Connector.Connector.ApiClient.DeleteAsync(url);
+        }
+
+        public static async Task UpdateProductsQuantity(string toUpdateAsJson)
+        {
+            string url = $"{standardUrl}/UpdateProductsQuantity";
+            
+            var stringContent = new StringContent(toUpdateAsJson, Encoding.UTF8, "application/json");
+            await Connector.Connector.ApiClient.PutAsync(url, stringContent);
+        }
+
         public static async Task<string> GetPendingRequests()
         {
             string url = $"{standardUrl}/GetPendingRequests";

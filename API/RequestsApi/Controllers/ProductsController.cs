@@ -123,5 +123,47 @@ namespace RequestsApi.Controllers
             var output = (await _repository.GetPendingRequests()).Select(request => request.AsReturnPendingRequestDto());
             return output;
         }
+
+        [HttpGet("GetIdPriceQuantity/{reqId}")]
+        public async Task<IEnumerable<ReturnIdPriceQuantityDto>> GetPendingRequests(int reqId)
+        {
+            var output = (await _repository.GetIdPriceQuantity(reqId)).Select(request => request.AsReturnIdPriceQuantityDto());
+            return output;
+        }
+
+        [HttpPost("AcceptRequest/{requestId}")]
+        public async Task<ActionResult> AcceptRequest(int requestId, AcceptRequestDto info)
+        {
+            await _repository.AcceptRequest(info);
+            return Ok();
+        }
+
+        [HttpPost("AcceptRequestProducts")]
+        public async Task<ActionResult> AcceptRequestProducts(List<int> ids)
+        {
+            await _repository.AcceptRequestProducts(ids);
+            return Ok();
+        }
+
+        [HttpDelete("DeletePendingRequestProducts/{requestId}")]
+        public async Task<ActionResult> DeletePendingRequestProducts(int requestId)
+        {
+            await _repository.DeletePendingRequestProducts(requestId);
+            return NoContent();
+        }
+
+        [HttpDelete("DeletePendingRequest/{requestId}")]
+        public async Task<ActionResult> DeletePendingRequest(int requestId)
+        {
+            await _repository.DeletePendingRequest(requestId);
+            return NoContent();
+        }
+
+        [HttpPut("UpdateProductsQuantity")]
+        public async Task<ActionResult> UpdateProductsQuantity(List<UpdateProductsQuantityDto> toUpdate)
+        {
+            await _repository.UpdateProductsQuantity(toUpdate);
+            return NoContent();
+        }
     }
 }
