@@ -46,5 +46,11 @@ namespace Management
             lblCurrentForm.Text = "Teams management";
             OpenChildForm(new TeamsForm());
         }
+
+        private void btnPendingRequestsMenu_Click(object sender, EventArgs e)
+        {
+            lblCurrentForm.Text = "PENDING REQUESTS";
+            OpenChildForm(new PendingRequestsForm());
+        }
     }
 }

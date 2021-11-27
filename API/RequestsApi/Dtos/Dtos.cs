@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace RequestsApi.Dtos
 { 
@@ -22,6 +23,7 @@ namespace RequestsApi.Dtos
 
     public record MakeRequestDto(int productId, int quantity);
 
+    public record ReturnPendingRequestDto(int id, int productId, DateTime date);
 
-
+    public record ReturnPendingRequestProductDto(int id, int productId, int quantity, int pendingRequestId);
 }

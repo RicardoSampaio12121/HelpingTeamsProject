@@ -24,6 +24,34 @@ namespace Data.RepositoryApi
             }
         }
 
+        public static async Task<string> GetPendingRequestProducts(int requestId)
+        {
+            string url = $"{defaultUrl}/GetPendingRequestProducts/{requestId}";
+
+            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                throw new Exception(response.ReasonPhrase);
+            }
+        }
+
+        public static async Task<string> GetPendingRequests(int teamId)
+        {
+            string url = $"{defaultUrl}/GetPendingRequests/{teamId}";
+
+            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                throw new Exception(response.ReasonPhrase);
+            }
+        }
+
         public static async Task MakeRequest(int teamId, string productsAsJson)
         {
             string url = $"{defaultUrl}/MakeRequest/{teamId}";

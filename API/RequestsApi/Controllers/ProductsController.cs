@@ -102,5 +102,26 @@ namespace RequestsApi.Controllers
             //TODO: Return something acording to the standards
             return Ok();
         }
+
+        [HttpGet("GetPendingRequests/{teamId}")]
+        public async Task<IEnumerable<ReturnPendingRequestDto>> GetPendingRequestsByTeam(int teamId)
+        {
+            var output = (await _repository.GetPendingRequestsByTeam(teamId)).Select(request => request.AsReturnPendingRequestDto());
+            return output;
+        }
+
+        [HttpGet("GetPendingRequestProducts/{requestId}")]
+        public async Task<IEnumerable<ReturnPendingRequestProductDto>> GetPendingRequestProducts(int requestId)
+        {
+            var output = (await _repository.GetPendingRequestProducts(requestId)).Select(product => product.AsReturnPendingRequestProductDto());
+            return output;
+        }
+
+        [HttpGet("GetPendingRequests")]
+        public async Task<IEnumerable<ReturnPendingRequestDto>> GetPendingRequests()
+        {
+            var output = (await _repository.GetPendingRequests()).Select(request => request.AsReturnPendingRequestDto());
+            return output;
+        }
     }
 }

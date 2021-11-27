@@ -31,12 +31,12 @@
             this.panelMenu = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnPendingRequestsMenu = new System.Windows.Forms.Button();
             this.btnTeams = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelTop = new System.Windows.Forms.Panel();
-            this.panelForm = new System.Windows.Forms.Panel();
             this.lblCurrentForm = new System.Windows.Forms.Label();
+            this.panelForm = new System.Windows.Forms.Panel();
             this.panelMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelTop.SuspendLayout();
@@ -47,7 +47,7 @@
             this.panelMenu.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.panelMenu.Controls.Add(this.button4);
             this.panelMenu.Controls.Add(this.button3);
-            this.panelMenu.Controls.Add(this.button2);
+            this.panelMenu.Controls.Add(this.btnPendingRequestsMenu);
             this.panelMenu.Controls.Add(this.btnTeams);
             this.panelMenu.Controls.Add(this.pictureBox1);
             this.panelMenu.Dock = System.Windows.Forms.DockStyle.Left;
@@ -76,15 +76,16 @@
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnPendingRequestsMenu
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button2.Location = new System.Drawing.Point(0, 162);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(173, 58);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnPendingRequestsMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnPendingRequestsMenu.Location = new System.Drawing.Point(0, 162);
+            this.btnPendingRequestsMenu.Name = "btnPendingRequestsMenu";
+            this.btnPendingRequestsMenu.Size = new System.Drawing.Size(173, 58);
+            this.btnPendingRequestsMenu.TabIndex = 2;
+            this.btnPendingRequestsMenu.Text = "Pending Requests";
+            this.btnPendingRequestsMenu.UseVisualStyleBackColor = true;
+            this.btnPendingRequestsMenu.Click += new System.EventHandler(this.btnPendingRequestsMenu_Click);
             // 
             // btnTeams
             // 
@@ -117,14 +118,6 @@
             this.panelTop.Size = new System.Drawing.Size(627, 104);
             this.panelTop.TabIndex = 1;
             // 
-            // panelForm
-            // 
-            this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelForm.Location = new System.Drawing.Point(173, 104);
-            this.panelForm.Name = "panelForm";
-            this.panelForm.Size = new System.Drawing.Size(627, 346);
-            this.panelForm.TabIndex = 2;
-            // 
             // lblCurrentForm
             // 
             this.lblCurrentForm.AutoSize = true;
@@ -133,6 +126,14 @@
             this.lblCurrentForm.Size = new System.Drawing.Size(38, 15);
             this.lblCurrentForm.TabIndex = 0;
             this.lblCurrentForm.Text = "label1";
+            // 
+            // panelForm
+            // 
+            this.panelForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelForm.Location = new System.Drawing.Point(173, 104);
+            this.panelForm.Name = "panelForm";
+            this.panelForm.Size = new System.Drawing.Size(627, 346);
+            this.panelForm.TabIndex = 2;
             // 
             // Form1
             // 
@@ -158,7 +159,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnPendingRequestsMenu;
         private System.Windows.Forms.Button btnTeams;
         private System.Windows.Forms.Panel panelTop;
         private System.Windows.Forms.Panel panelForm;

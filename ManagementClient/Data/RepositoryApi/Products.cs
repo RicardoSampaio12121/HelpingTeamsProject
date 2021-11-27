@@ -38,6 +38,40 @@ namespace Data.RepositoryApi
             }
         }
 
+        public static async Task<string> GetPendingRequestProducts(int reqId)
+        {
+            string url = $"{standardUrl}/GetPendingRequestProducts/{reqId}";
+
+            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
+        public static async Task<string> GetPendingRequests()
+        {
+            string url = $"{standardUrl}/GetPendingRequests";
+
+            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
         public static async Task CreateProduct(string productAsJson)
         {
             string url = $"{standardUrl}/CreateProduct";

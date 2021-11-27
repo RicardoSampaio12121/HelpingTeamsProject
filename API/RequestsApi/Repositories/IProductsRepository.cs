@@ -26,5 +26,8 @@ namespace RequestsApi.Repositories
 
         Task CreateRequest(int teamId);
         Task AddProductsToRequest(List<MakeRequestDto> products);
+        Task<IEnumerable<PendingRequestModel>> GetPendingRequestsByTeam(int teamId);
+        Task<IEnumerable<PendingRequestProductModel>> GetPendingRequestProducts(int requestId);
+        Task<IEnumerable<PendingRequestModel>> GetPendingRequests();
     }
 }

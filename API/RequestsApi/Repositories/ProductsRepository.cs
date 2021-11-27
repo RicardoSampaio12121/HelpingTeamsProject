@@ -160,5 +160,89 @@ namespace RequestsApi.Repositories
             
             await con.CloseAsync();
         }
+
+        public async Task<IEnumerable<PendingRequestModel>> GetPendingRequestsByTeam(int teamId)
+        {
+            List<PendingRequestModel> output = new();
+
+            MySqlConnection con = new(ProductsRepository.con);
+            string sql = $"SELECT * FROM pending_requests WHERE teamId = @id";
+
+            await using MySqlCommand cmd = new(sql, con);
+            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = teamId;
+            
+            await con.OpenAsync();
+            var sqlDr = await cmd.ExecuteReaderAsync();
+
+            while (await sqlDr.ReadAsync())
+            {
+                output.Add(new PendingRequestModel()
+                {
+                    Id = int.Parse(sqlDr[0].ToString()),
+                    TeamId = int.Parse(sqlDr[1].ToString()),
+                    Date = DateTime.Parse(sqlDr[2].ToString())
+                });
+            }
+            await sqlDr.CloseAsync();
+            await con.CloseAsync();
+
+            return output;
+        }
+
+        public async Task<IEnumerable<PendingRequestProductModel>> GetPendingRequestProducts(int requestId)
+        {
+            List<PendingRequestProductModel> output = new();
+
+            MySqlConnection con = new(ProductsRepository.con);
+            string sql = $"SELECT * FROM pending_requests_products WHERE pending_request_id = @reqId";
+
+            await using MySqlCommand cmd = new(sql, con);
+            cmd.Parameters.Add("@reqId", MySqlDbType.Int32).Value = requestId;
+
+            await con.OpenAsync();
+            var sqlDr = await cmd.ExecuteReaderAsync();
+
+            while (await sqlDr.ReadAsync())
+            {
+                output.Add(new PendingRequestProductModel()
+                {
+                    Id = int.Parse(sqlDr[0].ToString()),
+                    productId = int.Parse(sqlDr[1].ToString()),
+                    quantity = int.Parse(sqlDr[2].ToString()),
+                    pendingRequestId = int.Parse(sqlDr[3].ToString())
+                });
+            }
+            await sqlDr.CloseAsync();
+            await con.CloseAsync();
+
+            return output;
+        }
+
+        public async Task<IEnumerable<PendingRequestModel>> GetPendingRequests()
+        {
+            List<PendingRequestModel> output = new();
+
+            MySqlConnection con = new(ProductsRepository.con);
+            string sql = $"SELECT * FROM pending_requests";
+
+            await using MySqlCommand cmd = new(sql, con);
+
+            await con.OpenAsync();
+            var sqlDr = await cmd.ExecuteReaderAsync();
+
+            while (await sqlDr.ReadAsync())
+            {
+                output.Add(new PendingRequestModel()
+                {
+                    Id = int.Parse(sqlDr[0].ToString()),
+                    TeamId = int.Parse(sqlDr[1].ToString()),
+                    Date = DateTime.Parse(sqlDr[2].ToString())
+                });
+            }
+            await sqlDr.CloseAsync();
+            await con.CloseAsync();
+
+            return output;
+        }
     }
 }

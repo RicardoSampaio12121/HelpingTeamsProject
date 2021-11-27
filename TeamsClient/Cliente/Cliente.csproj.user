@@ -7,6 +7,12 @@
     <Compile Update="MakeRequestForm.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="PendingRequestProductsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="PendingRequestsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="QuantityForm.cs">
       <SubType>Form</SubType>
     </Compile>
