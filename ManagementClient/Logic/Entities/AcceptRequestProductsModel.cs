@@ -9,6 +9,7 @@ namespace Logic.Entities
     public record AcceptRequestProductsModel
     {
         public int productId { get; set; }
+
         public int requestId { get; set; }
     }
 }
