@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnReqHistory = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnMakeRequestMenu = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -41,7 +41,7 @@
             // 
             // panelMenu
             // 
-            this.panelMenu.Controls.Add(this.button3);
+            this.panelMenu.Controls.Add(this.btnReqHistory);
             this.panelMenu.Controls.Add(this.button2);
             this.panelMenu.Controls.Add(this.btnMakeRequestMenu);
             this.panelMenu.Controls.Add(this.pictureBox1);
@@ -51,15 +51,16 @@
             this.panelMenu.Size = new System.Drawing.Size(173, 450);
             this.panelMenu.TabIndex = 0;
             // 
-            // button3
+            // btnReqHistory
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.Location = new System.Drawing.Point(0, 220);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(173, 58);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnReqHistory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReqHistory.Location = new System.Drawing.Point(0, 220);
+            this.btnReqHistory.Name = "btnReqHistory";
+            this.btnReqHistory.Size = new System.Drawing.Size(173, 58);
+            this.btnReqHistory.TabIndex = 3;
+            this.btnReqHistory.Text = "Requests History";
+            this.btnReqHistory.UseVisualStyleBackColor = true;
+            this.btnReqHistory.Click += new System.EventHandler(this.btnReqHistory_Click);
             // 
             // button2
             // 
@@ -127,7 +128,7 @@
         #endregion
 
         private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnReqHistory;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button btnMakeRequestMenu;
         private System.Windows.Forms.PictureBox pictureBox1;

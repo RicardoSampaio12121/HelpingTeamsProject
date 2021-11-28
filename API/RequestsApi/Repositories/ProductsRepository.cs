@@ -358,5 +358,63 @@ namespace RequestsApi.Repositories
 
             await con.CloseAsync();
         }
+
+        public async Task<IEnumerable<CompletedRequestModel>> GetCompletedRequests(int teamId)
+        {
+            List<CompletedRequestModel> output = new();
+
+            MySqlConnection con = new(ProductsRepository.con);
+            string sql = $"SELECT * FROM requests WHERE team_id = @teamId";
+
+            await using MySqlCommand cmd = new(sql, con);
+            cmd.Parameters.Add("@teamId", MySqlDbType.Int32).Value = teamId;
+
+            await con.OpenAsync();
+            var sqlDr = await cmd.ExecuteReaderAsync();
+
+            while (await sqlDr.ReadAsync())
+            {
+                output.Add(new CompletedRequestModel()
+                {
+                    id = int.Parse(sqlDr[0].ToString()),
+                    teamId = int.Parse(sqlDr[1].ToString()),
+                    price = float.Parse(sqlDr[2].ToString()),
+                    date = DateTime.Parse(sqlDr[3].ToString()),
+                    decision = sqlDr[4].ToString()
+                });
+            }
+            await sqlDr.CloseAsync();
+            await con.CloseAsync();
+
+            return output;
+        }
+
+        public async Task<IEnumerable<CompletedRequestProductModel>> GetCompletedRequestProducts(int requestId)
+        {
+            List<CompletedRequestProductModel> output = new();
+
+            MySqlConnection con = new(ProductsRepository.con);
+            string sql = $"SELECT * FROM requests_products WHERE request_id = @req_id";
+
+            await using MySqlCommand cmd = new(sql, con);
+            cmd.Parameters.Add("@req_id", MySqlDbType.Int32).Value = requestId;
+
+            await con.OpenAsync();
+            var sqlDr = await cmd.ExecuteReaderAsync();
+
+            while (await sqlDr.ReadAsync())
+            {
+                output.Add(new CompletedRequestProductModel()
+                {
+                    id = int.Parse(sqlDr[0].ToString()),
+                    productId = int.Parse(sqlDr[1].ToString()),
+                    requestId = int.Parse(sqlDr[2].ToString())
+                });
+            }
+            await sqlDr.CloseAsync();
+            await con.CloseAsync();
+
+            return output;
+        }
     }
 }

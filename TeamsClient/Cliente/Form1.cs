@@ -49,5 +49,10 @@ namespace Cliente
         {
             OpenChildForm(new PendingRequestsForm(teamId));
         }
+
+        private void btnReqHistory_Click(object sender, EventArgs e)
+        {
+            OpenChildForm(new RequestsHistoryForm(teamId));
+        }
     }
 }

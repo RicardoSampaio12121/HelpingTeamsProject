@@ -165,5 +165,19 @@ namespace RequestsApi.Controllers
             await _repository.UpdateProductsQuantity(toUpdate);
             return NoContent();
         }
+
+        [HttpGet("GetCompletedRequests/{teamId}")]
+        public async Task<IEnumerable<ReturnCompletedRequestDto>> GetCompletedRequests(int teamId)
+        {
+            var output = (await _repository.GetCompletedRequests(teamId)).Select(request => request.AsReturnCompletedRequestDto());
+            return output;
+        }
+
+        [HttpGet("GetCompletedRequestProducts/{requestId}")]
+        public async Task<IEnumerable<ReturnCompletedRequestProductDto>> GetCompletedRequestProducts(int requestId)
+        {
+            var output = (await _repository.GetCompletedRequestProducts(requestId)).Select(request => request.AsReturnCompletedRequestProductDto());
+            return output;
+        }
     }
 }

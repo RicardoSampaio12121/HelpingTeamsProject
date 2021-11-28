@@ -32,4 +32,8 @@ namespace RequestsApi.Dtos
     public record AcceptRequestDto(int teamId, float price, string decision);
 
     public record UpdateProductsQuantityDto(int prodId, int quantityToTake);
+
+    public record ReturnCompletedRequestDto(int id, int teamId, float price, DateTime date, string decision);
+
+    public record ReturnCompletedRequestProductDto(int id, int productId, int requestId);
 }

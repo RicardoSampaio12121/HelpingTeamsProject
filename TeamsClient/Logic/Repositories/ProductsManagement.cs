@@ -23,6 +23,18 @@ namespace Logic.Repositories
             return JsonConvert.DeserializeObject<IEnumerable<PendingRequestProductModel>>(output);
         }
 
+        public static async Task<IEnumerable<CompletedRequestProductModel>> GetCompletedRequestProducts(int reqId)
+        {
+            var output = await Products.GetCompletedRequestProducts(reqId);
+            return JsonConvert.DeserializeObject<IEnumerable<CompletedRequestProductModel>>(output);
+        }
+
+        public static async Task<IEnumerable<CompletedRequestModel>> GetCompletedRequests(int teamId)
+        {
+            var output = await Products.GetCompletedRequests(teamId);
+            return JsonConvert.DeserializeObject<IEnumerable<CompletedRequestModel>>(output);
+        }
+
         public static async Task<IEnumerable<PendingRequestModel>> GetPendingRequests(int teamId)
         {
             var output = await Products.GetPendingRequests(teamId);

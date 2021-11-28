@@ -57,5 +57,15 @@ namespace RequestsApi
         {
             return new ReturnIdPriceQuantityDto(info.id, info.price, info.quantity);
         }
+        
+        public static ReturnCompletedRequestDto AsReturnCompletedRequestDto(this CompletedRequestModel request)
+        {
+            return new ReturnCompletedRequestDto(request.id, request.teamId, request.price, request.date, request.decision);
+        }
+
+        public static ReturnCompletedRequestProductDto  AsReturnCompletedRequestProductDto(this CompletedRequestProductModel prod)
+        {
+            return new ReturnCompletedRequestProductDto(prod.id, prod.productId, prod.requestId);
+        }
     }
 }

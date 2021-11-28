@@ -38,6 +38,34 @@ namespace Data.RepositoryApi
             }
         }
 
+        public static async Task<string> GetCompletedRequestProducts(int reqId)
+        {
+            string url = $"{defaultUrl}/GetCompletedRequestProducts/{reqId}";
+
+            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                throw new Exception(response.ReasonPhrase);
+            }
+        }
+
+        public static async Task<string> GetCompletedRequests(int teamId)
+        {
+            string url = $"{defaultUrl}/GetCompletedRequests/{teamId}";
+
+            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                throw new Exception(response.ReasonPhrase);
+            }
+        }
+
         public static async Task<string> GetPendingRequests(int teamId)
         {
             string url = $"{defaultUrl}/GetPendingRequests/{teamId}";
