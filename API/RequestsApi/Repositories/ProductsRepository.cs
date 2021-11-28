@@ -359,6 +359,37 @@ namespace RequestsApi.Repositories
             await con.CloseAsync();
         }
 
+
+        public async Task<IEnumerable<CompletedRequestModel>> GetCompletedRequests()
+        {
+            List<CompletedRequestModel> output = new();
+
+            MySqlConnection con = new(ProductsRepository.con);
+            string sql = $"SELECT * FROM requests";
+
+            await using MySqlCommand cmd = new(sql, con);
+
+            await con.OpenAsync();
+            var sqlDr = await cmd.ExecuteReaderAsync();
+
+            while (await sqlDr.ReadAsync())
+            {
+                output.Add(new CompletedRequestModel()
+                {
+                    id = int.Parse(sqlDr[0].ToString()),
+                    teamId = int.Parse(sqlDr[1].ToString()),
+                    price = float.Parse(sqlDr[2].ToString()),
+                    date = DateTime.Parse(sqlDr[3].ToString()),
+                    decision = sqlDr[4].ToString()
+                });
+            }
+            await sqlDr.CloseAsync();
+            await con.CloseAsync();
+
+            return output;
+        }
+
+
         public async Task<IEnumerable<CompletedRequestModel>> GetCompletedRequests(int teamId)
         {
             List<CompletedRequestModel> output = new();

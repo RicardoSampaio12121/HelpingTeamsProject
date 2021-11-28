@@ -29,7 +29,7 @@ namespace Management
             dgvProducts.DataSource = table;
         }
 
-        private void btnAddStock_Click(object sender, EventArgs e)
+        private async void btnAddStock_Click(object sender, EventArgs e)
         {
             int index = dgvProducts.SelectedRows[0].Index;
             var row = dgvProducts.Rows[index];
@@ -43,8 +43,10 @@ namespace Management
                 quantityToAdd = form.Quantity;
             }
 
-            ProductsManagement.AddStock(prodId, quantityToAdd);
+            await ProductsManagement.AddStock(prodId, quantityToAdd);
 
+            MessageBox.Show("Stock updated successfully!");
+            FillDataGridView();
         }
     }
 }

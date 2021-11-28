@@ -39,6 +39,23 @@ namespace Data.RepositoryApi
             }
         }
 
+        public static async Task<string> GetCompletedRequestProducts(int reqId)
+        {
+            string url = $"{standardUrl}/GetCompletedRequestProducts/{reqId}";
+
+            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
+        }
+
         public static async Task<string> GetPendingRequestProducts(int reqId)
         {
             string url = $"{standardUrl}/GetPendingRequestProducts/{reqId}";
@@ -140,6 +157,23 @@ namespace Data.RepositoryApi
 
             var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
             var result = await Connector.Connector.ApiClient.PutAsync(url, stringContent);
+        }
+
+        public static async Task<string> GetCompletedRequests()
+        {
+            string url = $"{standardUrl}/GetCompletedRequests";
+
+            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
+            {
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadAsStringAsync();
+                }
+                else
+                {
+                    throw new Exception(response.ReasonPhrase);
+                }
+            }
         }
     }
 }

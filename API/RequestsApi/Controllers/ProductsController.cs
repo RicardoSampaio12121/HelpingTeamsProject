@@ -166,6 +166,13 @@ namespace RequestsApi.Controllers
             return NoContent();
         }
 
+        [HttpGet("GetCompletedRequests")]
+        public async Task<IEnumerable<ReturnCompletedRequestDto>> GetCompletedRequests()
+        {
+            var output = (await _repository.GetCompletedRequests()).Select(request => request.AsReturnCompletedRequestDto());
+            return output;
+        }
+
         [HttpGet("GetCompletedRequests/{teamId}")]
         public async Task<IEnumerable<ReturnCompletedRequestDto>> GetCompletedRequests(int teamId)
         {

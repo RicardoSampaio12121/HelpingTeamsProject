@@ -35,6 +35,7 @@ namespace RequestsApi.Repositories
         Task DeletePendingRequestProducts(int requestId);
         Task DeletePendingRequest(int requestId);
         Task UpdateProductsQuantity(List<UpdateProductsQuantityDto> toUpdate);
+        Task<IEnumerable<CompletedRequestModel>> GetCompletedRequests();
         Task<IEnumerable<CompletedRequestModel>> GetCompletedRequests(int teamId);
         Task<IEnumerable<CompletedRequestProductModel>> GetCompletedRequestProducts(int requestId);
     }

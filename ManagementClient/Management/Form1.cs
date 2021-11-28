@@ -58,5 +58,11 @@ namespace Management
             lblCurrentForm.Text = "PRODUCTS";
             OpenChildForm(new ViewProductsForm());
         }
+
+        private void btnRequestHistory_Click(object sender, EventArgs e)
+        {
+            lblCurrentForm.Text = "REQUESTS HISTORY";
+            OpenChildForm(new RequestsHistory());
+        }
     }
 }

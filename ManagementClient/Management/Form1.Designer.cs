@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.panelMenu = new System.Windows.Forms.Panel();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btnRequestHistory = new System.Windows.Forms.Button();
             this.btnProductsMenu = new System.Windows.Forms.Button();
             this.btnPendingRequestsMenu = new System.Windows.Forms.Button();
             this.btnTeams = new System.Windows.Forms.Button();
@@ -45,7 +45,7 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.panelMenu.Controls.Add(this.button4);
+            this.panelMenu.Controls.Add(this.btnRequestHistory);
             this.panelMenu.Controls.Add(this.btnProductsMenu);
             this.panelMenu.Controls.Add(this.btnPendingRequestsMenu);
             this.panelMenu.Controls.Add(this.btnTeams);
@@ -56,15 +56,16 @@
             this.panelMenu.Size = new System.Drawing.Size(173, 450);
             this.panelMenu.TabIndex = 0;
             // 
-            // button4
+            // btnRequestHistory
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button4.Location = new System.Drawing.Point(0, 278);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(173, 58);
-            this.button4.TabIndex = 4;
-            this.button4.Text = "button4";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnRequestHistory.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnRequestHistory.Location = new System.Drawing.Point(0, 278);
+            this.btnRequestHistory.Name = "btnRequestHistory";
+            this.btnRequestHistory.Size = new System.Drawing.Size(173, 58);
+            this.btnRequestHistory.TabIndex = 4;
+            this.btnRequestHistory.Text = "Requests History";
+            this.btnRequestHistory.UseVisualStyleBackColor = true;
+            this.btnRequestHistory.Click += new System.EventHandler(this.btnRequestHistory_Click);
             // 
             // btnProductsMenu
             // 
@@ -158,7 +159,7 @@
 
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnRequestHistory;
         private System.Windows.Forms.Button btnProductsMenu;
         private System.Windows.Forms.Button btnPendingRequestsMenu;
         private System.Windows.Forms.Button btnTeams;
