@@ -52,5 +52,11 @@ namespace Management
             lblCurrentForm.Text = "PENDING REQUESTS";
             OpenChildForm(new PendingRequestsForm());
         }
+
+        private void btnProductsMenu_Click(object sender, EventArgs e)
+        {
+            lblCurrentForm.Text = "PRODUCTS";
+            OpenChildForm(new ViewProductsForm());
+        }
     }
 }

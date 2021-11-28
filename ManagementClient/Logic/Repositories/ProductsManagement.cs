@@ -148,10 +148,18 @@ namespace Logic.Repositories
             await Products.CreateProduct(productAsJson);
         }
 
-        public static async Task AddStock(Entities.ProductModel product)
+        public static async Task AddStock(int prodId, int quantityToAdd)
         {
             //var productAsJson = JsonConvert.SerializeObject(product);
-            await Products.AddStock(product.LogicProductAsDataProduct());
+
+            UpdateStockModel usm = new()
+            {
+                quantityToAdd = quantityToAdd
+            };
+
+            var quantiToAddAsJson = JsonConvert.SerializeObject(usm);
+
+            await Products.AddStock(prodId, quantiToAddAsJson);
         }
     }
 }

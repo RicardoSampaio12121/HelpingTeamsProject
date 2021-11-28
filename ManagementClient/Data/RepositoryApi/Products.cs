@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Data.Entities;
 using Data.Connector;
+using Newtonsoft.Json;
 
 namespace Data.RepositoryApi
 {
@@ -29,7 +30,7 @@ namespace Data.RepositoryApi
             {
                 if (response.IsSuccessStatusCode)
                 {
-                    return await response.Content.ReadAsAsync<string>();
+                    return await response.Content.ReadAsStringAsync();
                 }
                 else
                 {
@@ -133,12 +134,12 @@ namespace Data.RepositoryApi
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
 
-        public static async Task AddStock(ProductModel product)
+        public static async Task AddStock(int prodId, string json)
         {
-            string url = $"{standardUrl}/AddStock/{product.Id}";
+            string url = $"{standardUrl}/AddStock/{prodId}";
 
-            //var stringContent = new StringContent(productAsJson, Encoding.UTF8, "application/json");
-            var result = await Connector.Connector.ApiClient.PutAsJsonAsync(url, product);
+            var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+            var result = await Connector.Connector.ApiClient.PutAsync(url, stringContent);
         }
     }
 }

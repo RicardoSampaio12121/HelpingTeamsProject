@@ -87,9 +87,9 @@ namespace RequestsApi.Controllers
         /// <param name="quantityToAdd"></param>
         /// <returns></returns>
         [HttpPut("AddStock/{id}")]
-        public async Task<ActionResult> AddStock(int id, int quantityToAdd)
+        public async Task<ActionResult> AddStock(int id, UpdateProductQuantityDto quantity)
         {
-            await _repository.AddStock(id, quantityToAdd);
+            await _repository.AddStock(id, quantity.quantityToAdd);
             return NoContent();
         }
 

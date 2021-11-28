@@ -30,7 +30,7 @@
         {
             this.panelMenu = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnProductsMenu = new System.Windows.Forms.Button();
             this.btnPendingRequestsMenu = new System.Windows.Forms.Button();
             this.btnTeams = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -46,7 +46,7 @@
             // 
             this.panelMenu.BackColor = System.Drawing.SystemColors.ControlDarkDark;
             this.panelMenu.Controls.Add(this.button4);
-            this.panelMenu.Controls.Add(this.button3);
+            this.panelMenu.Controls.Add(this.btnProductsMenu);
             this.panelMenu.Controls.Add(this.btnPendingRequestsMenu);
             this.panelMenu.Controls.Add(this.btnTeams);
             this.panelMenu.Controls.Add(this.pictureBox1);
@@ -66,15 +66,16 @@
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnProductsMenu
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button3.Location = new System.Drawing.Point(0, 220);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(173, 58);
-            this.button3.TabIndex = 3;
-            this.button3.Text = "button3";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnProductsMenu.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnProductsMenu.Location = new System.Drawing.Point(0, 220);
+            this.btnProductsMenu.Name = "btnProductsMenu";
+            this.btnProductsMenu.Size = new System.Drawing.Size(173, 58);
+            this.btnProductsMenu.TabIndex = 3;
+            this.btnProductsMenu.Text = "Products";
+            this.btnProductsMenu.UseVisualStyleBackColor = true;
+            this.btnProductsMenu.Click += new System.EventHandler(this.btnProductsMenu_Click);
             // 
             // btnPendingRequestsMenu
             // 
@@ -158,7 +159,7 @@
         private System.Windows.Forms.Panel panelMenu;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnProductsMenu;
         private System.Windows.Forms.Button btnPendingRequestsMenu;
         private System.Windows.Forms.Button btnTeams;
         private System.Windows.Forms.Panel panelTop;
