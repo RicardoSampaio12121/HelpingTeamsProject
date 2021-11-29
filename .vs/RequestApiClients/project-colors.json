@@ -70,7 +70,27 @@
       "ProjectGuid": "46e3090b-cb17-4cd6-8341-32542491d90d",
       "DisplayName": "RequestsApi",
       "ColorIndex": 12
+    },
+    "25e83ea7-37d3-440f-92c7-ffeadde3edf2": {
+      "ProjectGuid": "25e83ea7-37d3-440f-92c7-ffeadde3edf2",
+      "DisplayName": "CovidApi",
+      "ColorIndex": 13
+    },
+    "3e6dd20f-2072-4284-abf3-30aee8cea245": {
+      "ProjectGuid": "3e6dd20f-2072-4284-abf3-30aee8cea245",
+      "DisplayName": "CovidAppClient",
+      "ColorIndex": 14
+    },
+    "feb23408-3a9b-4416-8b8f-c09ac765f8e1": {
+      "ProjectGuid": "feb23408-3a9b-4416-8b8f-c09ac765f8e1",
+      "DisplayName": "teste",
+      "ColorIndex": 15
+    },
+    "8717c1dc-a907-4081-a770-85cb98d0fc31": {
+      "ProjectGuid": "8717c1dc-a907-4081-a770-85cb98d0fc31",
+      "DisplayName": "CovidAppClient",
+      "ColorIndex": 0
     }
   },
-  "NextColorIndex": 13
+  "NextColorIndex": 1
 }

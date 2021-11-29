@@ -23,7 +23,31 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic", "TeamsClient\Logic\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Data", "TeamsClient\Data\Data.csproj", "{05EFB769-C643-45D4-A9F2-DF45D889B0CE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CovidApi", "CovidApi\CovidApi.csproj", "{25E83EA7-37D3-440F-92C7-FFEADDE3EDF2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CovidApp", "CovidApp", "{0E0E2A81-275E-4A11-BD8D-08F8E9630135}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CovidAppClient", "CovidApp\CovidAppClient\CovidAppClient.csproj", "{8717C1DC-A907-4081-A770-85CB98D0FC31}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WCFService1", "WCFService1\", "{BC42AD6B-0DCE-420C-9E2B-537CFD7B27C3}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.7.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_54433"
+		Debug.AspNetCompiler.PhysicalPath = "WCFService1\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54433\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_54433"
+		Release.AspNetCompiler.PhysicalPath = "WCFService1\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_54433\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "54433"
+		SlnRelativePath = "WCFService1\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,10 +83,14 @@ Global
 		{05EFB769-C643-45D4-A9F2-DF45D889B0CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05EFB769-C643-45D4-A9F2-DF45D889B0CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05EFB769-C643-45D4-A9F2-DF45D889B0CE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{25E83EA7-37D3-440F-92C7-FFEADDE3EDF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{25E83EA7-37D3-440F-92C7-FFEADDE3EDF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{25E83EA7-37D3-440F-92C7-FFEADDE3EDF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{25E83EA7-37D3-440F-92C7-FFEADDE3EDF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8717C1DC-A907-4081-A770-85CB98D0FC31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8717C1DC-A907-4081-A770-85CB98D0FC31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8717C1DC-A907-4081-A770-85CB98D0FC31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8717C1DC-A907-4081-A770-85CB98D0FC31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC42AD6B-0DCE-420C-9E2B-537CFD7B27C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC42AD6B-0DCE-420C-9E2B-537CFD7B27C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC42AD6B-0DCE-420C-9E2B-537CFD7B27C3}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC42AD6B-0DCE-420C-9E2B-537CFD7B27C3}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -75,7 +103,8 @@ Global
 		{765E4160-4581-4124-9CA8-66DBFBA71350} = {5A63336A-E264-4A5C-9DED-418E9D4EFCC8}
 		{84F48EB7-E380-4B50-B0E9-9E12FF75DBEA} = {0CC2A0AD-B653-4377-BE60-A1DE8C62D272}
 		{05EFB769-C643-45D4-A9F2-DF45D889B0CE} = {0CC2A0AD-B653-4377-BE60-A1DE8C62D272}
-		{25E83EA7-37D3-440F-92C7-FFEADDE3EDF2} = {980720DE-F96C-4257-AC2F-BFBC1A276D96}
+		{8717C1DC-A907-4081-A770-85CB98D0FC31} = {0E0E2A81-275E-4A11-BD8D-08F8E9630135}
+		{BC42AD6B-0DCE-420C-9E2B-537CFD7B27C3} = {980720DE-F96C-4257-AC2F-BFBC1A276D96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6D8315D9-BE0B-4C2F-9D5B-82642DEA57EF}
