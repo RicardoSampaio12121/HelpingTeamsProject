@@ -90,7 +90,17 @@
       "ProjectGuid": "8717c1dc-a907-4081-a770-85cb98d0fc31",
       "DisplayName": "CovidAppClient",
       "ColorIndex": 0
+    },
+    "bc42ad6b-0dce-420c-9e2b-537cfd7b27c3": {
+      "ProjectGuid": "bc42ad6b-0dce-420c-9e2b-537cfd7b27c3",
+      "DisplayName": "WCFService1",
+      "ColorIndex": 1
+    },
+    "980720de-f96c-4257-ac2f-bfbc1a276d96": {
+      "ProjectGuid": "980720de-f96c-4257-ac2f-bfbc1a276d96",
+      "DisplayName": "API",
+      "ColorIndex": 2
     }
   },
-  "NextColorIndex": 1
+  "NextColorIndex": 3
 }
