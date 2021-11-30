@@ -100,7 +100,12 @@
       "ProjectGuid": "980720de-f96c-4257-ac2f-bfbc1a276d96",
       "DisplayName": "API",
       "ColorIndex": 2
+    },
+    "77b2d9c0-9e15-4d76-997a-e4279a893eb3": {
+      "ProjectGuid": "77b2d9c0-9e15-4d76-997a-e4279a893eb3",
+      "DisplayName": "PSPGNR",
+      "ColorIndex": 3
     }
   },
-  "NextColorIndex": 3
+  "NextColorIndex": 4
 }

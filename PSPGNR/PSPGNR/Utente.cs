@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,20 +11,35 @@ namespace PSPGNR
     [XmlRoot(ElementName = "utente")]
     public class Utente
     {
+        [JsonProperty("nus")]
         [XmlElement(ElementName = "nus")]
-        public string Nus { get; set; }
+        public string nus { get; set; }
+
+        [JsonProperty("first-name")]
         [XmlElement(ElementName = "first-name")]
-        public string Firstname { get; set; }
+        public string FirstName { get; set; }
+
+        [JsonProperty("last-name")]
         [XmlElement(ElementName = "last-name")]
-        public string Lastname { get; set; }
+        public string LastName { get; set; }
+
+        [JsonProperty("infracao")]
         [XmlElement(ElementName = "infracao")]
-        public string Infracao { get; set; }
+        public string infracao { get; set; }
     }
 
     [XmlRoot(ElementName = "Fiscalizacao")]
     public class Fiscalizacao
     {
+        [JsonProperty("utente")]
         [XmlElement(ElementName = "utente")]
-        public List<Utente> Utente { get; set; }
+        public List<Utente> utente { get; set; }
     }
+
+    public class Root
+    {
+        public Fiscalizacao Fiscalizacao { get; set; }
+    }
+
+
 }
