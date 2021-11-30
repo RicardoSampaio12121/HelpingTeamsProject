@@ -20,6 +20,9 @@ namespace Management
             FillDataGridView();
         }
 
+        /// <summary>
+        /// Fill datagridview with all the available products
+        /// </summary>
         private async void FillDataGridView()
         {
             var content = await ProductsManagement.GetProducts();
@@ -29,6 +32,11 @@ namespace Management
             dgvProducts.DataSource = table;
         }
 
+        /// <summary>
+        /// Adds stock to a product
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnAddStock_Click(object sender, EventArgs e)
         {
             int index = dgvProducts.SelectedRows[0].Index;

@@ -1,5 +1,8 @@
 ﻿namespace RequestsApi.Entities
 {
+    /// <summary>
+    /// Model os something
+    /// </summary>
     public record IdPriceQuantityModel
     {
         public int id { get; set; }

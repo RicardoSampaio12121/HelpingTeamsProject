@@ -19,6 +19,11 @@ namespace Cliente
 
         public int Quantity { get; set; }
 
+        /// <summary>
+        /// Asks for the quantity the team wants of a product
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             this.Quantity = int.Parse(txtQuantity.Text);

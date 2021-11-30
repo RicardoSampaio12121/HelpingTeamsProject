@@ -20,6 +20,10 @@ namespace Management
             LoadDataGridView(teamId);
         }
 
+        /// <summary>
+        /// Fills the datagridview with the team members from a team
+        /// </summary>
+        /// <param name="teamId"></param>
         private async void LoadDataGridView(int teamId)
         {
             var content = await TeamsManagement.GetTeamMembersAsync(teamId);

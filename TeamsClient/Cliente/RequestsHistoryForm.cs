@@ -20,6 +20,10 @@ namespace Cliente
             LoadDataGridView(teamId);
         }
 
+        /// <summary>
+        /// Fills the datagridview with the completed requests of a team
+        /// </summary>
+        /// <param name="teamId"></param>
         private async void LoadDataGridView(int teamId)
         {
             var content = await ProductsManagement.GetCompletedRequests(teamId);
@@ -29,6 +33,11 @@ namespace Cliente
             dgvCompletedRequests.DataSource = table;
         }
 
+        /// <summary>
+        /// Shows the products of a completed request
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnViewProducts_Click(object sender, EventArgs e)
         {
             int index = dgvCompletedRequests.SelectedRows[0].Index;

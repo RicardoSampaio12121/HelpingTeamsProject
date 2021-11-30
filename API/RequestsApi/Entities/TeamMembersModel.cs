@@ -1,5 +1,8 @@
 namespace RequestsApi.Entities
 {
+    /// <summary>
+    /// Model of a team member
+    /// </summary>
     public record TeamMemberModel
     {
         public int Id { get; init; }

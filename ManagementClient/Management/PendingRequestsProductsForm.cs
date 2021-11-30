@@ -19,6 +19,10 @@ namespace Management
             FillDataGridView(reqId);
         }
 
+        /// <summary>
+        /// Fills the datagridview
+        /// </summary>
+        /// <param name="reqId"></param>
         private async void FillDataGridView(int reqId)
         {
             var content = await ProductsManagement.GetPendingRequestProducts(reqId);

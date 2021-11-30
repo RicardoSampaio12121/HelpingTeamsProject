@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Logic.Entities
 {
+    /// <summary>
+    /// Model of the product of a pending request
+    /// </summary>
     public record PendingRequestProductModel
     {
         public int id { get; set; }

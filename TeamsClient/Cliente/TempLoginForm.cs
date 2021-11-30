@@ -19,6 +19,11 @@ namespace Cliente
 
         public int TeamId { get; set; }
 
+        /// <summary>
+        /// Temporary login
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnLogin_Click(object sender, EventArgs e)
         {
             //TODO: Verificar se a equipa existe na base de dados

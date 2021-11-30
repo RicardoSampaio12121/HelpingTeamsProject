@@ -13,6 +13,9 @@ namespace Management
             FillDataGridView();
         }
 
+        /// <summary>
+        /// Fills the datagridview with all the completed requests
+        /// </summary>
         private async void FillDataGridView()
         {
             var content = await ProductsManagement.GetCompletedRequests();
@@ -23,6 +26,11 @@ namespace Management
             dgvRequests.DataSource = data;
         }
 
+        /// <summary>
+        /// Show the products related to a completed request
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnInfo_Click(object sender, System.EventArgs e)
         {
             int index = dgvRequests.SelectedRows[0].Index;

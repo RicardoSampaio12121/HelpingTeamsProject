@@ -10,6 +10,12 @@ namespace Cliente
 {
     public static class Extensions
     {
+        /// <summary>
+        /// Converts any IEnumerable type in a datatable
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public static DataTable ToDataTable<T>(this IEnumerable<T> data)
         {
             PropertyDescriptorCollection properties =

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Logic.Entities
 {
+    /// <summary>
+    /// Model of a product in the basked
+    /// </summary>
     public record ProductInBasket
     {
         public int productId { get; init; }

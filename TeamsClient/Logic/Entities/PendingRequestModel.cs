@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Logic.Entities
 {
+    /// <summary>
+    /// Model of a pending request
+    /// </summary>
     public record PendingRequestModel
     {
         [JsonProperty("id")]

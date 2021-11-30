@@ -1,4 +1,7 @@
-﻿using MySql.Data.MySqlClient;
+﻿/*
+ * This file contains a class that implements the ITeamsRepository
+ */
+using MySql.Data.MySqlClient;
 using RequestsApi.Dtos;
 using RequestsApi.Entities;
 using System.Collections.Generic;
@@ -10,6 +13,12 @@ namespace RequestsApi.Repositories
     {
         private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=root;Pwd=thethreedeadlyhallows;";
 
+        /// <summary>
+        /// Adds a team member to a team
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <param name="member"></param>
+        /// <returns></returns>
         public async Task AddTeamMemberAsync(int teamId, AddMemberDto member)
         {
             var con = new MySqlConnection(TeamsRepository.con);
@@ -26,6 +35,11 @@ namespace RequestsApi.Repositories
             await con.CloseAsync();
         }
 
+        /// <summary>
+        /// Adds one or more team members to a team
+        /// </summary>
+        /// <param name="members"></param>
+        /// <returns></returns>
         public async Task AddTeamMembersAsync(List<AddMemberDto> members)
         {
             var con = new MySqlConnection(TeamsRepository.con);
@@ -48,6 +62,11 @@ namespace RequestsApi.Repositories
             await con.CloseAsync();
         }
 
+        /// <summary>
+        /// Creates a team
+        /// </summary>
+        /// <param name="location"></param>
+        /// <returns></returns>
         public async Task CreateTeamAsync(string location)
         {
             var con = new MySqlConnection(TeamsRepository.con);
@@ -59,6 +78,11 @@ namespace RequestsApi.Repositories
             await con.CloseAsync();
         }
 
+        /// <summary>
+        /// Gets the information of a team by its id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<TeamModel> GetTeamByIdAsync(int id)
         {
             TeamModel team = new();
@@ -80,6 +104,10 @@ namespace RequestsApi.Repositories
             return team;
         }
 
+        /// <summary>
+        /// Gets the information of all the teams
+        /// </summary>
+        /// <returns></returns>
         public async Task<IEnumerable<TeamModel>> GetTeamsAsync()
         {
             var con = new MySqlConnection(TeamsRepository.con);
@@ -104,6 +132,11 @@ namespace RequestsApi.Repositories
             return output;
         }
 
+        /// <summary>
+        /// Get all the team members of a team
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<TeamMemberModel>> GetTteamMembersAsync(int teamId)
         {
             var con = new MySqlConnection(TeamsRepository.con);
@@ -131,6 +164,11 @@ namespace RequestsApi.Repositories
             return output;
         }
 
+        /// <summary>
+        /// Remove all team members from a team
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <returns></returns>
         public async Task RemoveAllTeamMembers(int teamId)
         {
             var con = new MySqlConnection(TeamsRepository.con);
@@ -144,6 +182,11 @@ namespace RequestsApi.Repositories
             await con.CloseAsync();
         }
 
+        /// <summary>
+        /// Removes a team
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <returns></returns>
         public async Task RemoveTeam(int teamId)
         {
             var con = new MySqlConnection(TeamsRepository.con);
@@ -157,6 +200,11 @@ namespace RequestsApi.Repositories
             await con.CloseAsync();
         }
 
+        /// <summary>
+        /// Removes a team member
+        /// </summary>
+        /// <param name="memberId"></param>
+        /// <returns></returns>
         public async Task RemoveTeamMember(int memberId)
         {
             var con = new MySqlConnection(TeamsRepository.con);

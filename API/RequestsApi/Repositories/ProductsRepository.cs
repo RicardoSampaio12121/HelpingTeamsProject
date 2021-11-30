@@ -1,10 +1,11 @@
-using System.Collections.Generic;
-using System.Data.Entity.Core.Common.CommandTrees;
-using System.Threading.Tasks;
-using RequestsApi.Entities;
+/*
+ * This file contains all the methods to access the database tables related to the products
+ */
 using MySql.Data.MySqlClient;
 using RequestsApi.Dtos;
-using System;
+using RequestsApi.Entities;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace RequestsApi.Repositories
 {
@@ -49,6 +50,11 @@ namespace RequestsApi.Repositories
             return output;
         }
 
+        /// <summary>
+        /// Gets the information of a product by its id
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         public async Task<Product> GatherProductAsync(int productId)
         {
             MySqlConnection con = new(ProductsRepository.con);
@@ -66,10 +72,14 @@ namespace RequestsApi.Repositories
                 Quantity = sqlDr.GetInt32(2),
                 UnitPrice = sqlDr.GetFloat(3)
             };
-
             return output;
         }
 
+        /// <summary>
+        /// Gets the information of a product by its name
+        /// </summary>
+        /// <param name="productName"></param>
+        /// <returns></returns>
         public async Task<Product> GatherProductByNameAsync(string productName)
         {
             MySqlConnection con = new(ProductsRepository.con);
@@ -91,6 +101,11 @@ namespace RequestsApi.Repositories
             return output;
         }
 
+        /// <summary>
+        /// Creates a prpduct in the database
+        /// </summary>
+        /// <param name="product"></param>
+        /// <returns></returns>
         public async Task CreateProduct(CreateProductDto product)
         {
             MySqlConnection con = new(ProductsRepository.con);
@@ -108,6 +123,12 @@ namespace RequestsApi.Repositories
             await con.CloseAsync();
         }
 
+        /// <summary>
+        /// Adds stock to a product
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="quantity"></param>
+        /// <returns></returns>
         public async Task AddStock(int id, int quantity)
         {
             MySqlConnection con = new(ProductsRepository.con);
@@ -124,127 +145,12 @@ namespace RequestsApi.Repositories
             await con.CloseAsync();
         }
 
-        public async Task CreateRequest(int teamId)
-        {
-            MySqlConnection con = new(ProductsRepository.con);
-
-            string sql = "INSERT INTO pending_requests (teamId, date) VALUES (@team, @date)";
-
-            await using MySqlCommand cmd = new(sql, con);
-
-            cmd.Parameters.Add("@team", MySqlDbType.Int32).Value = teamId;
-            cmd.Parameters.Add("@date", MySqlDbType.DateTime).Value = DateTime.Now;
-            
-            await con.OpenAsync();
-            await cmd.ExecuteNonQueryAsync();
-            await con.CloseAsync();
-        }
-
-        public async Task AddProductsToRequest(List<MakeRequestDto> products)
-        {
-            MySqlConnection con = new(ProductsRepository.con);
-
-            string sql = "INSERT INTO pending_requests_products (product_id, quantity, pending_request_id) VALUES (@prod, @quant, (SELECT MAX(id) FROM pending_requests))";
-
-            await using MySqlCommand cmd = new(sql, con);
-            await con.OpenAsync();
-            foreach (var product in products)
-            {
-                cmd.Parameters.Add("@prod", MySqlDbType.Int32).Value = product.productId;
-                cmd.Parameters.Add("@quant", MySqlDbType.Int32).Value = product.quantity;
-
-                await cmd.ExecuteNonQueryAsync();
-
-                cmd.Parameters.Clear();
-            }
-            
-            await con.CloseAsync();
-        }
-
-        public async Task<IEnumerable<PendingRequestModel>> GetPendingRequestsByTeam(int teamId)
-        {
-            List<PendingRequestModel> output = new();
-
-            MySqlConnection con = new(ProductsRepository.con);
-            string sql = $"SELECT * FROM pending_requests WHERE teamId = @id";
-
-            await using MySqlCommand cmd = new(sql, con);
-            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = teamId;
-            
-            await con.OpenAsync();
-            var sqlDr = await cmd.ExecuteReaderAsync();
-
-            while (await sqlDr.ReadAsync())
-            {
-                output.Add(new PendingRequestModel()
-                {
-                    Id = int.Parse(sqlDr[0].ToString()),
-                    TeamId = int.Parse(sqlDr[1].ToString()),
-                    Date = DateTime.Parse(sqlDr[2].ToString())
-                });
-            }
-            await sqlDr.CloseAsync();
-            await con.CloseAsync();
-
-            return output;
-        }
-
-        public async Task<IEnumerable<PendingRequestProductModel>> GetPendingRequestProducts(int requestId)
-        {
-            List<PendingRequestProductModel> output = new();
-
-            MySqlConnection con = new(ProductsRepository.con);
-            string sql = $"SELECT * FROM pending_requests_products WHERE pending_request_id = @reqId";
-
-            await using MySqlCommand cmd = new(sql, con);
-            cmd.Parameters.Add("@reqId", MySqlDbType.Int32).Value = requestId;
-
-            await con.OpenAsync();
-            var sqlDr = await cmd.ExecuteReaderAsync();
-
-            while (await sqlDr.ReadAsync())
-            {
-                output.Add(new PendingRequestProductModel()
-                {
-                    Id = int.Parse(sqlDr[0].ToString()),
-                    productId = int.Parse(sqlDr[1].ToString()),
-                    quantity = int.Parse(sqlDr[2].ToString()),
-                    pendingRequestId = int.Parse(sqlDr[3].ToString())
-                });
-            }
-            await sqlDr.CloseAsync();
-            await con.CloseAsync();
-
-            return output;
-        }
-
-        public async Task<IEnumerable<PendingRequestModel>> GetPendingRequests()
-        {
-            List<PendingRequestModel> output = new();
-
-            MySqlConnection con = new(ProductsRepository.con);
-            string sql = $"SELECT * FROM pending_requests";
-
-            await using MySqlCommand cmd = new(sql, con);
-
-            await con.OpenAsync();
-            var sqlDr = await cmd.ExecuteReaderAsync();
-
-            while (await sqlDr.ReadAsync())
-            {
-                output.Add(new PendingRequestModel()
-                {
-                    Id = int.Parse(sqlDr[0].ToString()),
-                    TeamId = int.Parse(sqlDr[1].ToString()),
-                    Date = DateTime.Parse(sqlDr[2].ToString())
-                });
-            }
-            await sqlDr.CloseAsync();
-            await con.CloseAsync();
-
-            return output;
-        }
-
+        
+        /// <summary>
+        /// Gets the Id, price and quantity of a product
+        /// </summary>
+        /// <param name="reqId"></param>
+        /// <returns></returns>
         public async Task<IEnumerable<IdPriceQuantityModel>> GetIdPriceQuantity(int reqId)
         {
             List<IdPriceQuantityModel> output = new();
@@ -272,71 +178,12 @@ namespace RequestsApi.Repositories
 
             return output;
         }
-
-        public async Task HandleRequest(AcceptRequestDto info)
-        {
-            MySqlConnection con = new(ProductsRepository.con);
-
-            string sql = "INSERT INTO requests (team_id, price, date, decision) VALUES (@teamId, @price, @date, @decision)";
-
-            await using MySqlCommand cmd = new(sql, con);
-            await con.OpenAsync();
-           
-            cmd.Parameters.Add("@teamId", MySqlDbType.Int32).Value = info.teamId;
-            cmd.Parameters.Add("@price", MySqlDbType.Float).Value = info.price;
-            cmd.Parameters.Add("@date", MySqlDbType.DateTime).Value = DateTime.Now;
-            cmd.Parameters.Add("@decision", MySqlDbType.VarChar, 100).Value = info.decision;
-
-            await cmd.ExecuteNonQueryAsync();
-            await con.CloseAsync();
-        }
-
-        public async Task HandleRequestProducts(List<int> ids)
-        {
-            MySqlConnection con = new(ProductsRepository.con);
-
-            string sql = "INSERT INTO requests_products (product_id, request_id) VALUES (@prodId, (SELECT MAX(id) FROM requests))";
-
-            await using MySqlCommand cmd = new(sql, con);
-            await con.OpenAsync();
-            
-            foreach (var id in ids)
-            {
-                cmd.Parameters.Add("@prodId", MySqlDbType.Int32).Value = id;
-
-                await cmd.ExecuteNonQueryAsync();
-                
-                cmd.Parameters.Clear();
-            }
-            await con.CloseAsync();
-        }
-
-        public async Task DeletePendingRequestProducts(int requestId)
-        {
-            var con = new MySqlConnection(ProductsRepository.con);
-            string sql = "DELETE FROM pending_requests_products WHERE pending_request_id = @id";
-
-            await using MySqlCommand cmd = new(sql, con);
-            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = requestId;
-
-            await con.OpenAsync();
-            await cmd.ExecuteNonQueryAsync();
-            await con.CloseAsync();
-        }
-
-        public async Task DeletePendingRequest(int requestId)
-        {
-            var con = new MySqlConnection(ProductsRepository.con);
-            string sql = "DELETE FROM pending_requests WHERE id = @id";
-
-            await using MySqlCommand cmd = new(sql, con);
-            cmd.Parameters.Add("@id", MySqlDbType.Int32).Value = requestId;
-
-            await con.OpenAsync();
-            await cmd.ExecuteNonQueryAsync();
-            await con.CloseAsync();
-        }
-
+        
+        /// <summary>
+        /// Updates the stock of a product in the database
+        /// </summary>
+        /// <param name="toUpdate"></param>
+        /// <returns></returns>
         public async Task UpdateProductsQuantity(List<UpdateProductsQuantityDto> toUpdate)
         {
             MySqlConnection con = new(ProductsRepository.con);
@@ -344,7 +191,6 @@ namespace RequestsApi.Repositories
                $"UPDATE available_products SET quantity = quantity - @toTake WHERE id = @id";
 
             await using MySqlCommand cmd = new(sql, con);
-
             await con.OpenAsync();
             
             foreach (var values in toUpdate)
@@ -355,97 +201,7 @@ namespace RequestsApi.Repositories
                 await cmd.ExecuteNonQueryAsync();
                 cmd.Parameters.Clear();
             }
-
             await con.CloseAsync();
-        }
-
-
-        public async Task<IEnumerable<CompletedRequestModel>> GetCompletedRequests()
-        {
-            List<CompletedRequestModel> output = new();
-
-            MySqlConnection con = new(ProductsRepository.con);
-            string sql = $"SELECT * FROM requests";
-
-            await using MySqlCommand cmd = new(sql, con);
-
-            await con.OpenAsync();
-            var sqlDr = await cmd.ExecuteReaderAsync();
-
-            while (await sqlDr.ReadAsync())
-            {
-                output.Add(new CompletedRequestModel()
-                {
-                    id = int.Parse(sqlDr[0].ToString()),
-                    teamId = int.Parse(sqlDr[1].ToString()),
-                    price = float.Parse(sqlDr[2].ToString()),
-                    date = DateTime.Parse(sqlDr[3].ToString()),
-                    decision = sqlDr[4].ToString()
-                });
-            }
-            await sqlDr.CloseAsync();
-            await con.CloseAsync();
-
-            return output;
-        }
-
-
-        public async Task<IEnumerable<CompletedRequestModel>> GetCompletedRequests(int teamId)
-        {
-            List<CompletedRequestModel> output = new();
-
-            MySqlConnection con = new(ProductsRepository.con);
-            string sql = $"SELECT * FROM requests WHERE team_id = @teamId";
-
-            await using MySqlCommand cmd = new(sql, con);
-            cmd.Parameters.Add("@teamId", MySqlDbType.Int32).Value = teamId;
-
-            await con.OpenAsync();
-            var sqlDr = await cmd.ExecuteReaderAsync();
-
-            while (await sqlDr.ReadAsync())
-            {
-                output.Add(new CompletedRequestModel()
-                {
-                    id = int.Parse(sqlDr[0].ToString()),
-                    teamId = int.Parse(sqlDr[1].ToString()),
-                    price = float.Parse(sqlDr[2].ToString()),
-                    date = DateTime.Parse(sqlDr[3].ToString()),
-                    decision = sqlDr[4].ToString()
-                });
-            }
-            await sqlDr.CloseAsync();
-            await con.CloseAsync();
-
-            return output;
-        }
-
-        public async Task<IEnumerable<CompletedRequestProductModel>> GetCompletedRequestProducts(int requestId)
-        {
-            List<CompletedRequestProductModel> output = new();
-
-            MySqlConnection con = new(ProductsRepository.con);
-            string sql = $"SELECT * FROM requests_products WHERE request_id = @req_id";
-
-            await using MySqlCommand cmd = new(sql, con);
-            cmd.Parameters.Add("@req_id", MySqlDbType.Int32).Value = requestId;
-
-            await con.OpenAsync();
-            var sqlDr = await cmd.ExecuteReaderAsync();
-
-            while (await sqlDr.ReadAsync())
-            {
-                output.Add(new CompletedRequestProductModel()
-                {
-                    id = int.Parse(sqlDr[0].ToString()),
-                    productId = int.Parse(sqlDr[1].ToString()),
-                    requestId = int.Parse(sqlDr[2].ToString())
-                });
-            }
-            await sqlDr.CloseAsync();
-            await con.CloseAsync();
-
-            return output;
         }
     }
 }

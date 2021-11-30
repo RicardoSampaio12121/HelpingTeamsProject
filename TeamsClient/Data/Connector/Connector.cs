@@ -12,7 +12,9 @@ namespace Data.Connector
     {
         public static HttpClient ApiClient { get; set; }
 
-        //TODO: dependency inversion nisto
+        /// <summary>
+        /// Connects to the api
+        /// </summary>
         public static void InitializeClient()
         {
             ApiClient = new();

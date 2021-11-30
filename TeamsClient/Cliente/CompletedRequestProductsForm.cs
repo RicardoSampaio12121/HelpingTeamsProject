@@ -21,6 +21,10 @@ namespace Cliente
             FillDataGridView(reqId);
         }
 
+        /// <summary>
+        /// Fills the datagridview with the products related to a completed request
+        /// </summary>
+        /// <param name="reqId"></param>
         private async void FillDataGridView(int reqId)
         {
             var content = await ProductsManagement.GetCompletedRequestProducts(reqId);

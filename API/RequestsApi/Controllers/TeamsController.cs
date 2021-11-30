@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿/*
+ * This file contains the controller related to the teams
+ */
+using Microsoft.AspNetCore.Mvc;
 using RequestsApi.Repositories;
 using RequestsApi.Dtos;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Linq;
-
 
 namespace RequestsApi.Controllers
 {
@@ -118,6 +120,11 @@ namespace RequestsApi.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// removes a team
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <returns></returns>
         [HttpDelete("RemoveTeam/{teamId}")]
         public async Task<ActionResult> RemoveTeam(int teamId)
         {
@@ -125,6 +132,11 @@ namespace RequestsApi.Controllers
             return NoContent();
         }
 
+        /// <summary>
+        /// Removes all team members from a team
+        /// </summary>
+        /// <param name="teamId"></param>
+        /// <returns></returns>
         [HttpDelete("RemoveAllTeamMembers/{teamId}")]
         public async Task<ActionResult> RemoveAllTeamMembers(int teamId)
         {
