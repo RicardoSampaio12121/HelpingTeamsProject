@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Logic.Entities
 {
+    /// <summary>
+    /// Model of the product of a completed request
+    /// </summary>
     public record CompletedRequestProducstModel
     {
         public int id { get; set; }

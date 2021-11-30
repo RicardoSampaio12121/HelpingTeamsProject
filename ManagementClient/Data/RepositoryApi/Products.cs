@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using Data.Entities;
-using Data.Connector;
-using Newtonsoft.Json;
 
 namespace Data.RepositoryApi
 {
@@ -14,6 +9,12 @@ namespace Data.RepositoryApi
     {
         private const string standardUrl = "https://localhost:44358/products";
 
+        /// <summary>
+        /// Gets products from the database
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static async Task<string> GetProducts(string name = "")
         {
             string url;
@@ -39,6 +40,12 @@ namespace Data.RepositoryApi
             }
         }
 
+        /// <summary>
+        /// Gets the products of a completed request from the database
+        /// </summary>
+        /// <param name="reqId"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static async Task<string> GetCompletedRequestProducts(int reqId)
         {
             string url = $"{standardUrl}/GetCompletedRequestProducts/{reqId}";
@@ -56,6 +63,12 @@ namespace Data.RepositoryApi
             }
         }
 
+        /// <summary>
+        /// Gets the products from a pending request from the database
+        /// </summary>
+        /// <param name="reqId"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static async Task<string> GetPendingRequestProducts(int reqId)
         {
             string url = $"{standardUrl}/GetPendingRequestProducts/{reqId}";
@@ -72,6 +85,7 @@ namespace Data.RepositoryApi
                 }
             }
         }
+
 
         public static async Task<string> GetIdQuantityPrice(int reqId)
         {
@@ -90,6 +104,12 @@ namespace Data.RepositoryApi
             }
         }
 
+        /// <summary>
+        /// Handles a pending request
+        /// </summary>
+        /// <param name="requestId"></param>
+        /// <param name="info"></param>
+        /// <returns></returns>
         public static async Task HandleRequest(int requestId, string info)
         {
             string url = $"{standardUrl}/HandleRequest/{requestId}";
@@ -98,6 +118,11 @@ namespace Data.RepositoryApi
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
 
+        /// <summary>
+        /// Handles the products related to a pending request
+        /// </summary>
+        /// <param name="prodIds"></param>
+        /// <returns></returns>
         public static async Task HandleRequestProducts(string prodIds)
         {
             string url = $"{standardUrl}/HandleRequestProducts";
@@ -106,18 +131,33 @@ namespace Data.RepositoryApi
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
 
+        /// <summary>
+        /// Deletes a pending request
+        /// </summary>
+        /// <param name="reqId"></param>
+        /// <returns></returns>
         public static async Task DeletePendingReques(int reqId)
         {
             string url = $"{standardUrl}/DeletePendingRequest/{reqId}";
             await Connector.Connector.ApiClient.DeleteAsync(url);
         }
 
+        /// <summary>
+        /// Deletes the products related to a pending request
+        /// </summary>
+        /// <param name="reqId"></param>
+        /// <returns></returns>
         public static async Task DeletePendingRequestProducts(int reqId)
         {
             string url = $"{standardUrl}/DeletePendingRequestProducts/{reqId}";
             await Connector.Connector.ApiClient.DeleteAsync(url);
         }
 
+        /// <summary>
+        /// Updates the stock of a product
+        /// </summary>
+        /// <param name="toUpdateAsJson"></param>
+        /// <returns></returns>
         public static async Task UpdateProductsQuantity(string toUpdateAsJson)
         {
             string url = $"{standardUrl}/UpdateProductsQuantity";
@@ -126,6 +166,11 @@ namespace Data.RepositoryApi
             await Connector.Connector.ApiClient.PutAsync(url, stringContent);
         }
 
+        /// <summary>
+        /// Gets all the pending requests
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static async Task<string> GetPendingRequests()
         {
             string url = $"{standardUrl}/GetPendingRequests";
@@ -143,6 +188,11 @@ namespace Data.RepositoryApi
             }
         }
 
+        /// <summary>
+        /// Creates a product
+        /// </summary>
+        /// <param name="productAsJson"></param>
+        /// <returns></returns>
         public static async Task CreateProduct(string productAsJson)
         {
             string url = $"{standardUrl}/CreateProduct";
@@ -151,6 +201,12 @@ namespace Data.RepositoryApi
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
 
+        /// <summary>
+        /// Adds stock to a product
+        /// </summary>
+        /// <param name="prodId"></param>
+        /// <param name="json"></param>
+        /// <returns></returns>
         public static async Task AddStock(int prodId, string json)
         {
             string url = $"{standardUrl}/AddStock/{prodId}";
@@ -159,6 +215,11 @@ namespace Data.RepositoryApi
             var result = await Connector.Connector.ApiClient.PutAsync(url, stringContent);
         }
 
+        /// <summary>
+        /// Gets all the completed requests
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         public static async Task<string> GetCompletedRequests()
         {
             string url = $"{standardUrl}/GetCompletedRequests";

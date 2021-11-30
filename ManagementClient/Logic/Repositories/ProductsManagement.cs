@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Data.RepositoryApi;
-using Data.Entities;
+﻿using Data.RepositoryApi;
 using Logic.Entities;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Logic.Repositories
 {

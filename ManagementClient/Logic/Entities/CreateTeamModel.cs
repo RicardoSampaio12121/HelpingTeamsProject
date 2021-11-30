@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Logic.Entities
 {
+    /// <summary>
+    /// Model of an object to create a team
+    /// </summary>
     public record CreateTeamModel
     {
         public string Location { get; init; }

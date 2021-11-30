@@ -13,9 +13,15 @@ namespace Data.RepositoryApi
     {
         private const string standartUrl = "https://localhost:44358/teams";
 
-        public static async Task<string> GetTeamsAsync()
+        /// <summary>
+        /// Sends a get request to the api
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static async Task<string> CallGetTeams(string endpoint)
         {
-            string url = $"{standartUrl}/GetTeams";
+            string url = $"{standartUrl}/{endpoint}";
 
             using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
             {
@@ -30,63 +36,29 @@ namespace Data.RepositoryApi
             }
         }
 
-        public static async Task<string> GetTeamMembersAsync(int teamId)
+        /// <summary>
+        /// Sends a post request to the api
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <param name="contentAsJson"></param>
+        /// <returns></returns>
+        public static async Task CallPostTeams(string endpoint, string contentAsJson)
         {
-            string url = $"{standartUrl}/GetTeamMembers/{teamId}";
+            string url = $"{standartUrl}/{endpoint}";
 
-            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    return await response.Content.ReadAsStringAsync();
-                }
-                else
-                {
-                    throw new Exception(response.ReasonPhrase);
-                }
-            }
-        }
-
-        public static async Task AddTeamMemberById(int teamId, string memberAsJson)
-        {
-            string url = $"{standartUrl}/AddMember/{teamId}";
-
-            var stringContent = new StringContent(memberAsJson, Encoding.UTF8, "application/json");
+            var stringContent = new StringContent(contentAsJson, Encoding.UTF8, "application/json");
             var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
 
-        public static async Task RemoveAllTeamMembers(int teamId)
+        /// <summary>
+        /// Sends a delete request to the api
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns></returns>
+        public static async Task CallDeleteTeams(string endpoint)
         {
-            string url = $"{standartUrl}/RemoveAllTeamMembers/{teamId}";
+            string url = $"{standartUrl}/{endpoint}";
             await Connector.Connector.ApiClient.DeleteAsync(url);
-        }
-
-        public static async Task RemoveTeam(int teamId)
-        {
-            string url = $"{standartUrl}/RemoveTeam/{teamId}";
-            await Connector.Connector.ApiClient.DeleteAsync(url);
-        }
-
-        public static async Task RemoveMemberFromTeam(int memberId)
-        {
-            string url = $"{standartUrl}/RemoveMember/{memberId}";
-            await Connector.Connector.ApiClient.DeleteAsync(url);
-        }
-
-        public static async Task CreateTeam(string teamAsJson)
-        {
-            string url = $"{standartUrl}/CreateTeam";
-
-            var stringContent = new StringContent(teamAsJson, Encoding.UTF8, "application/json");
-            var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
-        }
-
-        public static async Task AddTeamMembers(string membersAsJson)
-        {
-            string url = $"{standartUrl}/AddMembers";
-
-            var stringContent = new StringContent(membersAsJson, Encoding.UTF8, "application/json");
-            var result = await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
     }
 }
