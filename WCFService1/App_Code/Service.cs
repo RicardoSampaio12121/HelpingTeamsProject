@@ -1,22 +1,25 @@
-﻿using System;
+﻿/*
+ * This file contains a class that implements the methods of the interface
+ */
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
-using System.Web.Services;
 
-
-// OBSERVAÇÃO: Você pode usar o comando "Renomear" no menu "Refatorar" para alterar o nome da classe "Service" no arquivo de código, svc e configuração ao mesmo tempo.
 public class Cases : ICases
 {
+    /// <summary>
+    /// Calls a web method to insert the infected case into the database
+    /// </summary>
+    /// <param name="cc"></param>
     public void InsertDetectedCase(int cc)
     {
         CovidManagement cov = new CovidManagement();
         int a = cov.InsertInfectedUser(cc);
     }
 
+    /// <summary>
+    /// Calls a web method to insert the people in contact with the infected case in the database
+    /// </summary>
+    /// <param name="ccs"></param>
+    /// <param name="cc"></param>
     public void InsertUsersInContact(List<int> ccs, int cc)
     {
         CovidManagement cov = new CovidManagement();

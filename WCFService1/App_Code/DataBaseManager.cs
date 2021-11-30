@@ -1,27 +1,34 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Services;
+﻿/*
+ * This file contains web methods to communicate with the database
+ */
+
 using MySql.Data.MySqlClient;
+using System;
+using System.Collections.Generic;
+using System.Web.Services;
+using System.Configuration;
 
 
 /// <summary>
-/// Descrição resumida de DataBaseManager
+/// This class contains web methods to communicate with the database
 /// </summary>
 [WebService]
 public class CovidManagement : System.Web.Services.WebService
 {
 
-    public CovidManagement()
-    {
-    }
-    private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=root;Pwd=thethreedeadlyhallows;";
+    public CovidManagement(){}
 
+    /// <summary>
+    /// Inserts and infected user in the database
+    /// </summary>
+    /// <param name="cc"></param>
+    /// <returns></returns>
     [WebMethod]
     public int InsertInfectedUser(int cc)
     {
         int tot = 0;
+
+        string con = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
 
         using (MySqlConnection conn = new MySqlConnection(con))
         {
@@ -41,10 +48,18 @@ public class CovidManagement : System.Web.Services.WebService
         return tot;   
     }
 
+    /// <summary>
+    /// Inserts people that were in contact with an infected user in the database
+    /// </summary>
+    /// <param name="ccs"></param>
+    /// <param name="cc_infetado"></param>
+    /// <returns></returns>
     [WebMethod]
     public int InsertUsersInContact(List<int> ccs, int cc_infetado)
     {
         int tot = 0;
+
+        string con = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
 
         using (MySqlConnection conn = new MySqlConnection(con))
         {
