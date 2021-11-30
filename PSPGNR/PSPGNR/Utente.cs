@@ -1,9 +1,10 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿/*
+ * This classes have the purpose to store the information given by te XML and JSON
+ * documents.
+ */
+
+using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace PSPGNR

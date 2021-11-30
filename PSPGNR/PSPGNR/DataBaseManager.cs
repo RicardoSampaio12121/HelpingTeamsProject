@@ -1,21 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿/*
+ * This file has the methods to insert the data into the database
+ */
+
 using MySql.Data.MySqlClient;
+using System;
+using System.Configuration;
 
 
 namespace PSPGNR
 {
+    /// <summary>
+    /// Has the methods to insert data to the database
+    /// </summary>
     public static class DataBaseManager
     {
-        private const string con = @"Server=localhost;Port=3306;Database=isi_tp1;Uid=root;Pwd=thethreedeadlyhallows;";
-
+        /// <summary>
+        /// Inserts the content from the XML file given by PSP into the database
+        /// </summary>
+        /// <param name="fisc"></param>
+        /// <returns></returns>
         public static int InsertPSP(Fiscalizacao fisc)
         {
             int tot = 0;
-
+            string con = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
             using (MySqlConnection conn = new MySqlConnection(con))
             {
                 string query = "INSERT INTO psp_covid (cc, infracao, date) VALUES (@cc, @inf, @date)";
@@ -46,10 +53,15 @@ namespace PSPGNR
             return tot;
         }
 
+        /// <summary>
+        /// Inserts the content in the JSON file given by the GNR into the database
+        /// </summary>
+        /// <param name="fisc"></param>
+        /// <returns></returns>
         public static int InsertGNR(Fiscalizacao fisc)
         {
             int tot = 0;
-
+            string con = ConfigurationManager.ConnectionStrings["con"].ConnectionString;
             using (MySqlConnection conn = new MySqlConnection(con))
             {
                 string query = "INSERT INTO gnr_covid (cc, infracao, date) VALUES (@cc, @inf, @date)";
