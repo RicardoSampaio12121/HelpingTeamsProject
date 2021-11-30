@@ -9,6 +9,9 @@ namespace Logic
 {
     public static class ApiConnector
     {
+        /// <summary>
+        /// Connects to the api
+        /// </summary>
         public static void Connect()
         {
             Connector.InitializeClient();

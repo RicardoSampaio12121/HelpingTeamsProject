@@ -20,6 +20,9 @@ namespace Management
             LoadDataGridView();
         }
 
+        /// <summary>
+        /// Fills the datagridview with all the teams
+        /// </summary>
         private async void LoadDataGridView()
         {
             var content = await TeamsManagement.GetTeamsAsync();
@@ -31,6 +34,11 @@ namespace Management
             dgvTeams.DataSource = table;
         }
 
+        /// <summary>
+        /// Shows the team members of a specific team
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnShowTeamMembers_Click(object sender, EventArgs e)
         {
             int index = dgvTeams.SelectedRows[0].Index;
@@ -41,12 +49,22 @@ namespace Management
             teamMembersForm.Show();
         }
 
+        /// <summary>
+        /// Creates a new team
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnCreateTeam_Click(object sender, EventArgs e)
         {
             Form CreateTeamForm = new CreateTeamForm();
             CreateTeamForm.Show();
         }
 
+        /// <summary>
+        /// Adds a member to an existing team
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddMember_Click(object sender, EventArgs e)
         {
             int index = dgvTeams.SelectedRows[0].Index;
@@ -57,6 +75,11 @@ namespace Management
             addTeamMemberForm.Show();
         }
 
+        /// <summary>
+        /// Removes a member from a team
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRemoveMember_Click(object sender, EventArgs e)
         {
             int index = dgvTeams.SelectedRows[0].Index;
@@ -67,6 +90,11 @@ namespace Management
             removeTeamMemberForm.Show();
         }
 
+        /// <summary>
+        /// Removes a team
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnRemoveTeam_Click(object sender, EventArgs e)
         {
             int index = dgvTeams.SelectedRows[0].Index;

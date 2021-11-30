@@ -21,6 +21,10 @@ namespace Management
             FillCB(teamId);
         }
 
+        /// <summary>
+        /// Fills the datagridview with the team members of a team
+        /// </summary>
+        /// <param name="teamId"></param>
         private async void FillCB(int teamId)
         {
             var members = await TeamsManagement.GetTeamMembersAsync(teamId);
@@ -29,6 +33,12 @@ namespace Management
             cbMembers.DataSource = bs;
         }
 
+        /// <summary>
+        /// Gets the id from a string
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
         private int GetIdFromText(string id)
         {
             string output = string.Empty;
@@ -43,6 +53,11 @@ namespace Management
             throw new Exception();
         }
 
+        /// <summary>
+        /// Removes a team member
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnRemove_Click(object sender, EventArgs e)
         {
             int id = GetIdFromText(cbMembers.Text);

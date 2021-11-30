@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.Web.Services;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
+﻿/*
+ * This interface containts the available methods to communicate with the database
+ */
 
-// OBSERVAÇÃO: Você pode usar o comando "Renomear" no menu "Refatorar" para alterar o nome da interface "IService" no arquivo de código e configuração ao mesmo tempo.
+using System.Collections.Generic;
+using System.ServiceModel;
+
 [ServiceContract]
 public interface ICases
 {
@@ -16,25 +13,4 @@ public interface ICases
 
 	[OperationContract]
 	void InsertUsersInContact(List<int> ccs, int cc);
-
-
-	// TODO: Adicione suas operações de serviço aqui
-}
-
-// Use um contrato de dados como ilustrado no exemplo abaixo para adicionar tipos compostos a operações de serviço.
-[DataContract]
-public class infectedUser
-{
-	public int _cc;
-
-	public infectedUser(int cc)
-    {
-		_cc = cc;
-    }
-}
-
-[DataContract]
-public class userInContact
-{
-	int cc;
 }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Logic.Entities
 {
+    /// <summary>
+    /// Model of something that I forgot.
+    /// </summary>
     public record ToAcceptRequestInfo
     {
         [JsonProperty("id")]

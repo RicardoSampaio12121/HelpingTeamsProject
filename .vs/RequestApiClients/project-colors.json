@@ -91,26 +91,21 @@
       "DisplayName": "CovidAppClient",
       "ColorIndex": 0
     },
-    "3030b805-aee0-4b60-b295-50f765bd67f4": {
-      "ProjectGuid": "3030b805-aee0-4b60-b295-50f765bd67f4",
+    "bc42ad6b-0dce-420c-9e2b-537cfd7b27c3": {
+      "ProjectGuid": "bc42ad6b-0dce-420c-9e2b-537cfd7b27c3",
       "DisplayName": "WCFService1",
       "ColorIndex": 1
     },
-    "0343d3de-cb77-42e1-81c1-1b3a38331ddd": {
-      "ProjectGuid": "0343d3de-cb77-42e1-81c1-1b3a38331ddd",
-      "DisplayName": "WindowsFormsApp1",
+    "980720de-f96c-4257-ac2f-bfbc1a276d96": {
+      "ProjectGuid": "980720de-f96c-4257-ac2f-bfbc1a276d96",
+      "DisplayName": "API",
       "ColorIndex": 2
     },
-    "8b0eff92-2d21-4a16-aa8d-c689abdf17aa": {
-      "ProjectGuid": "8b0eff92-2d21-4a16-aa8d-c689abdf17aa",
-      "DisplayName": "DasboardApp",
+    "77b2d9c0-9e15-4d76-997a-e4279a893eb3": {
+      "ProjectGuid": "77b2d9c0-9e15-4d76-997a-e4279a893eb3",
+      "DisplayName": "PSPGNR",
       "ColorIndex": 3
-    },
-    "02d18b21-52bd-4c34-a0c9-42baf9874d83": {
-      "ProjectGuid": "02d18b21-52bd-4c34-a0c9-42baf9874d83",
-      "DisplayName": "RESTAuth",
-      "ColorIndex": 4
     }
   },
-  "NextColorIndex": 5
+  "NextColorIndex": 4
 }

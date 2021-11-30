@@ -21,6 +21,11 @@ namespace Management
 
         private List<TeamMemberModel> members = new();
 
+        /// <summary>
+        /// Adds a member to the list of members to add to the team
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnConfirmMember_Click(object sender, EventArgs e)
         {
             if(txtName.Text == "" || txtSurname.Text == "" || cbOrganization.Text == "")
@@ -38,6 +43,11 @@ namespace Management
             }
         }
 
+        /// <summary>
+        /// Submits the information needed to create the team
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnCreateTean_Click(object sender, EventArgs e)
         {
             if(txtLocation.Text == "")

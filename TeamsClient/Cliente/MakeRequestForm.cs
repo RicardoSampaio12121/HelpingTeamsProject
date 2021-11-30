@@ -19,6 +19,9 @@ namespace Cliente
             _teamId = teamId;
         }
 
+        /// <summary>
+        /// Fills the datagridview with all the available products
+        /// </summary>
         private async void LoadDataGridView()
         {
             var content = await ProductsManagement.GetAllAvailableProducts();
@@ -29,6 +32,11 @@ namespace Cliente
             dgvProducts.DataSource = table;
         }
 
+        /// <summary>
+        /// Adds a product into the basket
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAdd_Click(object sender, System.EventArgs e)
         {
             int index = dgvProducts.SelectedRows[0].Index;
@@ -53,6 +61,11 @@ namespace Cliente
             basket.Add(product);
         }
 
+        /// <summary>
+        /// Makes the request
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnSubmit_Click(object sender, System.EventArgs e)
         {
             await ProductsManagement.MakeRequest(_teamId, basket);

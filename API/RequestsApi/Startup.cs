@@ -22,6 +22,7 @@ namespace RequestsApi
         {
             services.AddSingleton<IProductsRepository, ProductsRepository>();
             services.AddSingleton<ITeamsRepository, TeamsRepository>();
+            services.AddSingleton<IRequestsRepository, RequestsRepository>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

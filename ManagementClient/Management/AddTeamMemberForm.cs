@@ -23,6 +23,11 @@ namespace Management
             _teamId = teamId;
         }
 
+        /// <summary>
+        /// Asks for information about a new team member to the user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void btnAddMember_Click(object sender, EventArgs e)
         {
             TeamMemberModel member = new()

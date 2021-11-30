@@ -17,6 +17,9 @@ namespace Cliente
             FillDataGridView();
         }
 
+        /// <summary>
+        /// Fills the datagridview with the products related to a pending request
+        /// </summary>
         private async void FillDataGridView()
         {
             var content = await ProductsManagement.GetPendingRequestProducts(_requestId);

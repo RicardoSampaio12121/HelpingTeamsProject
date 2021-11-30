@@ -9,10 +9,18 @@ namespace Data.RepositoryApi
 {
     public static class Products
     {
-        private const string defaultUrl = "https://localhost:44358/products";
-        public static async Task<string> GetAllAvailableProducts()
+        private const string defaultProductsUrl = "https://localhost:44358/products";
+        private const string defaultRequestsUrl = "https://localhost:44358/requests";
+
+        /// <summary>
+        /// Sends an http Get to the specified endpoint
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static async Task<string> CallHttpGetProducts(string endpoint)
         {
-            string url = $"{defaultUrl}/GetAvailableProducts";
+            string url = $"{defaultProductsUrl}/{endpoint}";
 
             using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
             {
@@ -24,9 +32,15 @@ namespace Data.RepositoryApi
             }
         }
 
-        public static async Task<string> GetPendingRequestProducts(int requestId)
+        /// <summary>
+        /// Sends an http Get to the specified endpoint
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        public static async Task<string> CallHttpGetRequests(string endpoint)
         {
-            string url = $"{defaultUrl}/GetPendingRequestProducts/{requestId}";
+            string url = $"{defaultRequestsUrl}/{endpoint}";
 
             using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
             {
@@ -38,52 +52,16 @@ namespace Data.RepositoryApi
             }
         }
 
-        public static async Task<string> GetCompletedRequestProducts(int reqId)
+        /// <summary>
+        /// Sends an http post request to the specified endpoint
+        /// </summary>
+        /// <param name="endpoint"></param>
+        /// <param name="contentAsJson"></param>
+        /// <returns></returns>
+        public static async Task CallHttpPostRequests(string endpoint, string contentAsJson)
         {
-            string url = $"{defaultUrl}/GetCompletedRequestProducts/{reqId}";
-
-            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    return await response.Content.ReadAsStringAsync();
-                }
-                throw new Exception(response.ReasonPhrase);
-            }
-        }
-
-        public static async Task<string> GetCompletedRequests(int teamId)
-        {
-            string url = $"{defaultUrl}/GetCompletedRequests/{teamId}";
-
-            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    return await response.Content.ReadAsStringAsync();
-                }
-                throw new Exception(response.ReasonPhrase);
-            }
-        }
-
-        public static async Task<string> GetPendingRequests(int teamId)
-        {
-            string url = $"{defaultUrl}/GetPendingRequests/{teamId}";
-
-            using (HttpResponseMessage response = await Connector.Connector.ApiClient.GetAsync(url))
-            {
-                if (response.IsSuccessStatusCode)
-                {
-                    return await response.Content.ReadAsStringAsync();
-                }
-                throw new Exception(response.ReasonPhrase);
-            }
-        }
-
-        public static async Task MakeRequest(int teamId, string productsAsJson)
-        {
-            string url = $"{defaultUrl}/MakeRequest/{teamId}";
-            var stringContent = new StringContent(productsAsJson, Encoding.UTF8, "application/json");
+            string url = $"{defaultRequestsUrl}/{endpoint}";
+            var stringContent = new StringContent(contentAsJson, Encoding.UTF8, "application/json");
             await Connector.Connector.ApiClient.PostAsync(url, stringContent);
         }
     }

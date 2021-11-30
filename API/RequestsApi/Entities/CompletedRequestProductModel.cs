@@ -1,5 +1,8 @@
 ﻿namespace RequestsApi.Entities
 {
+    /// <summary>
+    /// Model of a completed request product
+    /// </summary>
     public record CompletedRequestProductModel
     {
         public int id { get; set; }

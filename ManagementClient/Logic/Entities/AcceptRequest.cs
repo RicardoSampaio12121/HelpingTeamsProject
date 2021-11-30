@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Logic.Entities
 {
+    /// <summary>
+    /// Model of a completed request
+    /// </summary>
     public record HandleRequest
     {
         public int teamId { get; set; }
